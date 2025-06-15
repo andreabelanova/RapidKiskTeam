@@ -967,68 +967,113 @@ export class MemStorage implements IStorage {
     return [
       progressMaterial,
       {
-        id: "team-finding-resources",
-        title: "Team Finding Resources",
+        id: "ideation-topic-finding",
+        title: "General Ideation / Topic Finding",
         type: "resource",
-        icon: "users",
+        icon: "lightbulb",
         content: [
-          { title: "CliftonStrengths Assessment", url: "https://www.gallup.com/cliftonstrengths" },
-          { title: "VIA Character Strengths", url: "https://www.viacharacter.org" },
-          { title: "16Personalities (MBTI)", url: "https://www.16personalities.com" },
-          { title: "Spider-chart template (Miro)", url: "https://miro.com/templates/radar-chart" }
+          { title: "Lightning Decision Jam guide", url: "https://ajsmart.com/ldj" },
+          { title: "UN SDG Problem Library", url: "https://sdgs.un.org/goals" },
+          { title: "How-Might-We method", url: "https://designsprintkit.withgoogle.com/methodology/phase1-understand/how-might-we" }
         ],
         color: "yellow"
       },
       {
-        id: "facilitation-tools",
-        title: "Meeting Facilitation Tools",
+        id: "personal-skill-profiling",
+        title: "Personal Skill Profiling",
         type: "resource",
-        icon: "lightbulb",
+        icon: "user",
         content: [
-          { title: "Round-Robin facilitation tip-sheet", url: "https://www.sessionlab.com/library/roundrobin" },
-          { title: "Liberating Structures 1-2-4-All", url: "http://www.liberatingstructures.com/1-1-2-4-all" },
-          { title: "Parabol Talk-Time Tracker", url: "https://www.parabol.co/integration/teams" },
-          { title: "Handling dominant speakers", url: "https://hbr.org/2020/08/how-to-handle-dominant-speakers-in-virtual-meetings" }
+          { title: "CliftonStrengths", url: "https://www.gallup.com/cliftonstrengths" },
+          { title: "VIA Character", url: "https://www.viacharacter.org" },
+          { title: "MBTI / 16Personalities", url: "https://www.16personalities.com" },
+          { title: "Spider-chart template (Miro)", url: "https://miro.com/templates/spider-chart/" }
         ],
         color: "blue"
       },
       {
-        id: "decision-making-tools",
-        title: "Decision Making Tools",
+        id: "team-creation",
+        title: "Joining or Creating a Team",
         type: "resource",
-        icon: "chart-line",
+        icon: "users",
         content: [
-          { title: "Decision Matrix Guide", url: "https://www.lucidchart.com/blog/decision-matrix-template" },
-          { title: "Dot Voting Guide (IDEO)", url: "https://www.designkit.org/methods/dot-voting" },
-          { title: "Prototyping Spike explainer", url: "https://martinfowler.com/bliki/Spike.html" }
+          { title: "Growth Sprint Offer template", url: "https://growth.design/sprint-offer-template" },
+          { title: "Shadowing before Joining", url: "https://medium.com/ux-collaboration/shadowing" },
+          { title: "Sprint Goal Canvas", url: "https://www.mural.co/blog/sprint-goal" },
+          { title: "Team Charter template (Figma)", url: "https://www.figma.com/templates/team-charter-template/" }
         ],
         color: "green"
       },
       {
-        id: "project-management",
-        title: "Project Management",
+        id: "cv-portfolio",
+        title: "CV / Portfolio Improvement",
         type: "resource",
-        icon: "download",
+        icon: "file-text",
         content: [
-          { title: "Sprint Goal Canvas", url: "https://www.mural.co/templates/sprint-goal-canvas" },
-          { title: "Team Charter Jam (Figma)", url: "https://figma.com/community/file/Team-Charter-Jam" },
-          { title: "MoSCoW Prioritization", url: "https://agilebusiness.org/resources/moscow-prioritisation" },
-          { title: "Scope Canvas template", url: "https://scopecanvas.com" }
+          { title: "STAR method for case studies", url: "https://www.themuse.com/advice/star-interview-method" },
+          { title: "Foot-in-the-Door technique", url: "https://psychology.wikia.org/foot-in-the-door" }
         ],
         color: "purple"
       },
       {
-        id: "progress",
-        title: "Your Progress",
-        type: "progress",
-        icon: "chart-line",
-        content: {
-          completed: 0,
-          total: 15,
-          percentage: 0
-        },
-        color: "green"
-      }
+        id: "facilitation-tools",
+        title: "Meeting Facilitation & Speaking Balance",
+        type: "resource",
+        icon: "mic",
+        content: [
+          { title: "Round-Robin facilitation", url: "https://www.sessionlab.com/library/round-robin" },
+          { title: "Liberating Structures 1-2-4-All", url: "http://www.liberatingstructures.com/1-1-2-4-all" },
+          { title: "Parabol Talk-Time Tracker (feature list)", url: "https://www.parabol.co/features/" },
+          { title: "Inclusive Meetings play (Atlassian)", url: "https://www.atlassian.com/team-playbook/plays/inclusive-meetings" }
+        ],
+        color: "orange"
+      },
+      {
+        id: "decision-making-tools",
+        title: "Decision Making",
+        type: "resource",
+        icon: "target",
+        content: [
+          { title: "Decision Matrix template (Lucidchart)", url: "https://www.lucidchart.com/pages/templates/decision-matrix-example" },
+          { title: "Dot-Voting template (Miro)", url: "https://miro.com/templates/dot-voting/" },
+          { title: "Prototype Spike (background)", url: "https://en.wikipedia.org/wiki/Spike_(software_development)" }
+        ],
+        color: "red"
+      },
+      {
+        id: "recruiting-participants",
+        title: "Recruiting Research Participants",
+        type: "resource",
+        icon: "search",
+        content: [
+          { title: "LinkedIn Alumni Search tutorial", url: "https://www.linkedin.com/help/linkedin/answer/a507149" },
+          { title: "UserTesting Education plan", url: "https://www.usertesting.com/education" },
+          { title: "Example faculty newsletter (Masaryk University)", url: "https://www.muni.cz" }
+        ],
+        color: "indigo"
+      },
+      {
+        id: "team-diversity",
+        title: "Team-Diversity Tools",
+        type: "resource",
+        icon: "users",
+        content: [
+          { title: "Guest roles in agile teams", url: "https://www.scrum.org" }
+        ],
+        color: "pink"
+      },
+      {
+        id: "scope-management",
+        title: "Scope & Effort Management",
+        type: "resource",
+        icon: "settings",
+        content: [
+          { title: "MoSCoW cheat sheet (Atlassian)", url: "https://www.atlassian.com/agile/product-management/prioritization-framework#moscow-method" },
+          { title: "Scoping Canvas", url: "https://www.boardofinnovation.com/tools/scoping-canvas/" }
+        ],
+        color: "teal"
+      },
+
     ];
   }
 }
