@@ -14,6 +14,16 @@ const getNodeTheme = (scenarioId: string) => {
   return "bg-gradient-to-br from-blue-500 to-indigo-500";
 };
 
+const getScenarioIllustrationType = (scenarioId: string): 'have_team' | 'no_team' | 'no_topic' | 'dominant_member' | 'decision_conflict' | 'communication' | 'success' => {
+  if (scenarioId.includes("dominant")) return "dominant_member";
+  if (scenarioId.includes("conflict")) return "decision_conflict";
+  if (scenarioId.includes("communication") || scenarioId.includes("talk")) return "communication";
+  if (scenarioId.includes("success") || scenarioId.includes("happy")) return "success";
+  if (scenarioId.includes("no_team") || scenarioId.includes("looking")) return "no_team";
+  if (scenarioId.includes("no_topic") || scenarioId.includes("topic")) return "no_topic";
+  return "have_team";
+};
+
 interface GameSceneProps {
   scenario: Scenario;
   onDecisionSelect: (decision: Decision) => void;
