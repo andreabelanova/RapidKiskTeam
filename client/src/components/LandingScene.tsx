@@ -78,7 +78,7 @@ export function LandingScene({ characters, onCharacterSelect, isVisible }: Landi
                 <div className="flex-shrink-0 mt-2">
                   <CharacterIllustration 
                     type={character.id as 'have_team' | 'no_team' | 'no_topic'} 
-                    className="w-24 h-20 drop-shadow-sm"
+                    className="w-32 h-24 drop-shadow-sm"
                   />
                 </div>
                 <div className="flex-1">
