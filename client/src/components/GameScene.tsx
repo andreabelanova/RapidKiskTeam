@@ -45,7 +45,14 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
   const isEndState = ['continue_project', 'seek_help', 'project_cancelled', 'happy_student'].includes(scenario.id);
 
   const handleDecisionClick = (decision: Decision) => {
-    // Add visual feedback
+    // Reset all buttons first
+    const allButtons = document.querySelectorAll('[data-decision]');
+    allButtons.forEach(btn => {
+      (btn as HTMLElement).style.background = '';
+      (btn as HTMLElement).style.transform = '';
+    });
+
+    // Add visual feedback to clicked button only
     const button = document.querySelector(`[data-decision="${decision.id}"]`);
     if (button) {
       (button as HTMLElement).style.background = 'linear-gradient(135deg, #FFD400, #FFC107)';
