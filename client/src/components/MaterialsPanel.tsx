@@ -8,11 +8,12 @@ import { gameApi } from "@/lib/gameApi";
 interface MaterialsPanelProps {
   isOpen: boolean;
   onClose: () => void;
+  sessionId: string;
 }
 
-export function MaterialsPanel({ isOpen, onClose }: MaterialsPanelProps) {
+export function MaterialsPanel({ isOpen, onClose, sessionId }: MaterialsPanelProps) {
   const { data: materials, isLoading } = useQuery({
-    queryKey: ["/api/learning-materials"],
+    queryKey: ["/api/learning-materials", sessionId],
     queryFn: gameApi.getLearningMaterials,
   });
 

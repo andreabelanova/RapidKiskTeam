@@ -100,7 +100,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get learning materials
   app.get("/api/learning-materials", async (req, res) => {
     try {
-      const materials = await storage.getLearningMaterials();
+      const sessionId = req.query.sessionId as string;
+      const materials = await storage.getLearningMaterials(sessionId);
       res.json(materials);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch learning materials" });

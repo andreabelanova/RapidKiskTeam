@@ -20,7 +20,9 @@ export interface IStorage {
   createGameProgress(progress: InsertGameProgress): Promise<GameProgress>;
   updateGameProgress(sessionId: string, updates: Partial<GameProgress>): Promise<GameProgress | undefined>;
   getGameProgress(sessionId: string): Promise<GameProgress | undefined>;
-  getLearningMaterials(): Promise<LearningMaterial[]>;
+  getLearningMaterials(sessionId?: string): Promise<LearningMaterial[]>;
+  getTotalScenarioCount(): Promise<number>;
+  getVisitedScenariosCount(sessionId: string): Promise<number>;
 }
 
 export class MemStorage implements IStorage {
@@ -832,8 +834,53 @@ export class MemStorage implements IStorage {
     return this.gameProgressList.get(sessionId);
   }
 
-  async getLearningMaterials(): Promise<LearningMaterial[]> {
+  async getTotalScenarioCount(): Promise<number> {
+    return this.scenarios.size;
+  }
+
+  async getVisitedScenariosCount(sessionId: string): Promise<number> {
+    const progress = await this.getGameProgress(sessionId);
+    if (!progress || !progress.completedScenarios) return 0;
+    return progress.completedScenarios.length;
+  }
+
+  async getLearningMaterials(sessionId?: string): Promise<LearningMaterial[]> {
+    let progressMaterial: LearningMaterial;
+    
+    if (sessionId) {
+      const totalScenarios = await this.getTotalScenarioCount();
+      const visitedScenarios = await this.getVisitedScenariosCount(sessionId);
+      const percentage = totalScenarios > 0 ? Math.round((visitedScenarios / totalScenarios) * 100) : 0;
+      
+      progressMaterial = {
+        id: "scenario-progress",
+        title: "Your Learning Progress",
+        type: "progress",
+        icon: "chart",
+        content: {
+          completed: visitedScenarios,
+          total: totalScenarios,
+          percentage: percentage
+        },
+        color: "blue"
+      };
+    } else {
+      progressMaterial = {
+        id: "scenario-progress",
+        title: "Your Learning Progress",
+        type: "progress",
+        icon: "chart",
+        content: {
+          completed: 0,
+          total: await this.getTotalScenarioCount(),
+          percentage: 0
+        },
+        color: "blue"
+      };
+    }
+
     return [
+      progressMaterial,
       {
         id: "team-finding-resources",
         title: "Team Finding Resources",

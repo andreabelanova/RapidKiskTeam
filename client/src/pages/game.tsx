@@ -191,7 +191,11 @@ export default function Game() {
         )}
       </main>
 
-      <MaterialsPanel isOpen={materialsOpen} onClose={() => setMaterialsOpen(false)} />
+      <MaterialsPanel 
+        isOpen={materialsOpen} 
+        onClose={() => setMaterialsOpen(false)}
+        sessionId={sessionId}
+      />
     </div>
   );
 }
