@@ -64,7 +64,7 @@ export class MemStorage implements IStorage {
 
     charactersData.forEach(char => this.characters.set(char.id, char));
 
-    // Initialize Scenarios - Complete Decision Tree
+    // Initialize Scenarios - Complete Decision Tree (v0.2)
     const scenariosData: Scenario[] = [
       // Start Node
       {
@@ -103,17 +103,17 @@ export class MemStorage implements IStorage {
         learningObjectives: ["Self-assessment", "Team formation", "Project planning"]
       },
       
-      // Have Team - Problems
+      // Have Team - Problems (Updated v0.2)
       {
         id: "have_team",
         title: "Team Problems",
-        description: "The team already exists, but a problem has emerged. What specific challenge are you facing?",
+        description: "You already have a team, but a problem appeared. What specific challenge are you facing?",
         characterId: "have_team",
         decisions: [
           {
             id: "1",
             letter: "A",
-            title: "Team is falling apart",
+            title: "The team is falling apart",
             description: "Major conflicts and relationship breakdowns",
             nextScenario: "team_break"
           },
@@ -134,23 +134,37 @@ export class MemStorage implements IStorage {
           {
             id: "4",
             letter: "D",
-            title: "Low motivation in team",
+            title: "Low motivation",
             description: "Team members seem disengaged and unmotivated",
             nextScenario: "low_motivation"
           },
           {
             id: "5",
             letter: "E",
-            title: "Team can't agree on solution direction",
+            title: "Can't agree on solution direction",
             description: "Conflict about which approach to take",
             nextScenario: "decision_conflict"
           },
           {
             id: "6",
             letter: "F",
-            title: "We can't find research respondents",
+            title: "Can't find research respondents",
             description: "Struggling to recruit participants for research",
             nextScenario: "find_respondents"
+          },
+          {
+            id: "7",
+            letter: "G",
+            title: "Lacking diversity of expertise",
+            description: "Team members have similar skills, missing other viewpoints",
+            nextScenario: "lack_diversity"
+          },
+          {
+            id: "8",
+            letter: "H",
+            title: "Scope too big, team overwhelmed",
+            description: "Project scope is too ambitious for current resources",
+            nextScenario: "scope_overload"
           }
         ],
         nextScenarios: {
@@ -159,7 +173,9 @@ export class MemStorage implements IStorage {
           "3": "no_comm",
           "4": "low_motivation",
           "5": "decision_conflict",
-          "6": "find_respondents"
+          "6": "find_respondents",
+          "7": "lack_diversity",
+          "8": "scope_overload"
         },
         learningObjectives: ["Problem identification", "Team dynamics", "Conflict resolution"]
       },
@@ -191,6 +207,51 @@ export class MemStorage implements IStorage {
           "2": "no_topic"
         },
         learningObjectives: ["Team formation", "Networking", "Project alignment"]
+      },
+
+      // No Topic - Topic Development (v0.2)
+      {
+        id: "no_topic",
+        title: "Topic Development",
+        description: "You don't have a clear topic/problem for your (future) team. How do you want to discover your project focus?",
+        characterId: "no_topic",
+        decisions: [
+          {
+            id: "1",
+            letter: "🔍",
+            title: "Personal brainstorm",
+            description: "Do a quick personal brainstorm – list 3–5 problems that annoy or fascinate you",
+            nextScenario: "topic_self_reflect"
+          },
+          {
+            id: "2",
+            letter: "🤝",
+            title: "Ideation call",
+            description: "Host a 30‑min ideation call with 2–3 classmates, generate ideas and vote TOP 3",
+            nextScenario: "topic_ideation_call"
+          },
+          {
+            id: "3",
+            letter: "🛠️",
+            title: "Browse challenge library",
+            description: "Browse a challenge library (UN SDGs, 100 methods DB) and pick what resonates",
+            nextScenario: "topic_library"
+          },
+          {
+            id: "4",
+            letter: "⭐",
+            title: "Topic agreed",
+            description: "You already have consensus on the topic",
+            nextScenario: "continue_project"
+          }
+        ],
+        nextScenarios: {
+          "1": "topic_self_reflect",
+          "2": "topic_ideation_call",
+          "3": "topic_library",
+          "4": "continue_project"
+        },
+        learningObjectives: ["Topic identification", "Ideation techniques", "Research methods"]
       },
 
       // Dominant Member Solutions
@@ -351,33 +412,115 @@ export class MemStorage implements IStorage {
         learningObjectives: ["Success achievement", "Team satisfaction"]
       },
 
-      // Missing scenario nodes
+      // Communication Issues (v0.2)
       {
         id: "no_comm",
-        title: "Communication Issues",
-        description: "Team members aren't sharing information effectively. How do you improve communication?",
+        title: "Communication Problems",
+        description: "People don't communicate effectively. Team members aren't sharing information or coordinating well.",
         characterId: "have_team",
         decisions: [
           {
             id: "1",
-            letter: "🛠",
-            title: "Set up regular check-ins",
-            description: "Schedule daily stand-ups and weekly team meetings",
-            nextScenario: "continue_project"
+            letter: "🔍",
+            title: "Empathy check session",
+            description: "Run a session to understand individual communication preferences",
+            nextScenario: "empathy_check"
           },
           {
             id: "2",
-            letter: "🔍",
-            title: "Create communication charter",
-            description: "Define how and when team communicates",
-            nextScenario: "continue_project"
+            letter: "🛠️",
+            title: "Set up daily check-ins",
+            description: "Establish regular communication rhythms and touchpoints",
+            nextScenario: "daily_setup"
+          },
+          {
+            id: "3",
+            letter: "🤝",
+            title: "Create communication contract",
+            description: "Define team agreements on how and when to communicate",
+            nextScenario: "comm_contract"
           }
         ],
         nextScenarios: {
-          "1": "continue_project",
-          "2": "continue_project"
+          "1": "empathy_check",
+          "2": "daily_setup",
+          "3": "comm_contract"
         },
-        learningObjectives: ["Communication protocols", "Team alignment"]
+        learningObjectives: ["Communication protocols", "Team alignment", "Empathy building"]
+      },
+
+      // Team Break Scenarios (v0.2)
+      {
+        id: "team_break",
+        title: "Team Breakdown",
+        description: "The team is falling apart due to major conflicts and relationship issues. What's your approach?",
+        characterId: "have_team",
+        decisions: [
+          {
+            id: "1",
+            letter: "🔍",
+            title: "Team retrospective",
+            description: "Run a structured retrospective to identify root causes",
+            nextScenario: "retro_break"
+          },
+          {
+            id: "2",
+            letter: "🤝",
+            title: "Form new team",
+            description: "Pivot to forming a completely new team",
+            nextScenario: "pivot_new_team"
+          },
+          {
+            id: "3",
+            letter: "🚩",
+            title: "Seek external help",
+            description: "Contact lecturer or mentor for mediation",
+            nextScenario: "seek_help"
+          }
+        ],
+        nextScenarios: {
+          "1": "retro_break",
+          "2": "pivot_new_team",
+          "3": "seek_help"
+        },
+        learningObjectives: ["Conflict resolution", "Team recovery", "Crisis management"]
+      },
+
+      // Low Motivation (v0.2)
+      {
+        id: "low_motivation",
+        title: "Low Team Motivation",
+        description: "Team members seem disengaged and unmotivated. How do you re-energize the group?",
+        characterId: "have_team",
+        decisions: [
+          {
+            id: "1",
+            letter: "🔍",
+            title: "Map personal goals",
+            description: "Understand what motivates each team member individually",
+            nextScenario: "goal_mapping"
+          },
+          {
+            id: "2",
+            letter: "🛠️",
+            title: "Create side quest",
+            description: "Add a fun, low-stakes challenge to rebuild engagement",
+            nextScenario: "side_quest"
+          },
+          {
+            id: "3",
+            letter: "🤝",
+            title: "Celebrate small wins",
+            description: "Recognize progress and achievements to boost morale",
+            nextScenario: "small_wins"
+          }
+        ],
+        nextScenarios: {
+          "1": "goal_mapping",
+          "2": "side_quest",
+          "3": "small_wins"
+        },
+        learningObjectives: ["Motivation techniques", "Team engagement", "Goal alignment"]
       },
 
       {
