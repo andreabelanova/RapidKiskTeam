@@ -2,6 +2,7 @@ import { Scenario, Decision } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { FloatingIcons } from "./FloatingIcons";
 import { CharacterIllustration } from "./CharacterIllustrations";
+import { useState } from "react";
 
 const getNodeTheme = (scenarioId: string) => {
   if (scenarioId === "start") return "bg-gradient-to-br from-blue-500 to-blue-600";
@@ -43,24 +44,14 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
 
   const decisions = scenario.decisions as Decision[];
   const isEndState = ['continue_project', 'seek_help', 'project_cancelled', 'happy_student'].includes(scenario.id);
+  const [selectedDecisionId, setSelectedDecisionId] = useState<string | null>(null);
 
   const handleDecisionClick = (decision: Decision) => {
-    // Reset all buttons first
-    const allButtons = document.querySelectorAll('[data-decision]');
-    allButtons.forEach(btn => {
-      (btn as HTMLElement).style.background = '';
-      (btn as HTMLElement).style.transform = '';
-    });
-
-    // Add visual feedback to clicked button only
-    const button = document.querySelector(`[data-decision="${decision.id}"]`);
-    if (button) {
-      (button as HTMLElement).style.background = 'linear-gradient(135deg, #FFD400, #FFC107)';
-      (button as HTMLElement).style.transform = 'scale(1.02)';
-    }
+    setSelectedDecisionId(decision.id);
     
     setTimeout(() => {
       onDecisionSelect(decision);
+      setSelectedDecisionId(null); // Reset selection after navigation
     }, 500);
   };
 
@@ -90,14 +81,17 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
               </div>
             </div>
             
-            {/* Decision buttons with consistent styling */}
+            {/* Decision buttons with state-based selection */}
             <div className="space-y-6 max-w-3xl mx-auto">
               {decisions.map((decision) => (
                 <div
                   key={decision.id}
-                  data-decision={decision.id}
                   onClick={() => handleDecisionClick(decision)}
-                  className="academic-card cursor-pointer group"
+                  className={`academic-card cursor-pointer group transition-all duration-300 ${
+                    selectedDecisionId === decision.id 
+                      ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-xl transform scale-105' 
+                      : 'hover:shadow-lg hover:transform hover:scale-102'
+                  }`}
                 >
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
@@ -158,9 +152,12 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
             {decisions.map((decision, index) => (
               <div
                 key={decision.id}
-                data-decision={decision.id}
                 onClick={() => handleDecisionClick(decision)}
-                className="academic-card cursor-pointer group"
+                className={`academic-card cursor-pointer group transition-all duration-300 ${
+                  selectedDecisionId === decision.id 
+                    ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-xl transform scale-105' 
+                    : 'hover:shadow-lg hover:transform hover:scale-102'
+                }`}
               >
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0">
