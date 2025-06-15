@@ -1,6 +1,7 @@
 import { Scenario, Decision } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { FloatingIcons } from "./FloatingIcons";
+import { CharacterIllustration } from "./CharacterIllustrations";
 
 const getNodeTheme = (scenarioId: string) => {
   if (scenarioId === "start") return "bg-gradient-to-br from-blue-500 to-blue-600";
@@ -42,12 +43,20 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
       <div className="academic-container py-16">
         <div className="max-w-4xl mx-auto">
           <div className="text-center academic-spacing">
-            <h2 className="text-2xl font-light academic-text mb-4">
-              {scenario.title}
-            </h2>
-            <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-              {scenario.description}
-            </p>
+            <div className="flex items-center justify-center mb-6">
+              <CharacterIllustration 
+                type={getScenarioIllustrationType(scenario.id)} 
+                className="w-32 h-24 drop-shadow-sm mr-6"
+              />
+              <div className="text-left">
+                <h2 className="text-2xl font-light academic-text mb-4">
+                  {scenario.title}
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
+                  {scenario.description}
+                </p>
+              </div>
+            </div>
           </div>
           
           <div className="space-y-6">

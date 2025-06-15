@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Character } from "@shared/schema";
 import { HelpCircle } from "lucide-react";
+import { CharacterIllustration } from "./CharacterIllustrations";
 
 interface LandingSceneProps {
   characters: Character[];
@@ -73,31 +74,33 @@ export function LandingScene({ characters, onCharacterSelect, isVisible }: Landi
               }`}
               onClick={() => handleCharacterClick(character)}
             >
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-6 bg-academic-blue/10 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl academic-blue">
-                    {character.id === 'have_team' ? '👥' : 
-                     character.id === 'no_team' ? '🔍' : '💡'}
-                  </span>
+              <div className="flex items-start space-x-6">
+                <div className="flex-shrink-0 mt-2">
+                  <CharacterIllustration 
+                    type={character.id as 'have_team' | 'no_team' | 'no_topic'} 
+                    className="w-24 h-20 drop-shadow-sm"
+                  />
                 </div>
-                <h3 className="text-xl font-medium academic-text mb-4">
-                  {character.name}
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  {character.description}
-                </p>
-                <div className="flex flex-wrap gap-2 justify-center mb-6">
-                  {character.traits.map((trait) => (
-                    <span
-                      key={trait}
-                      className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
-                    >
-                      {trait}
-                    </span>
-                  ))}
-                </div>
-                <div className="text-academic-blue font-medium group-hover:text-blue-700 transition-colors">
-                  Begin Assessment →
+                <div className="flex-1">
+                  <h3 className="text-xl font-medium academic-text mb-4">
+                    {character.name}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    {character.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {character.traits.map((trait) => (
+                      <span
+                        key={trait}
+                        className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
+                      >
+                        {trait}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="text-academic-blue font-medium group-hover:text-blue-700 transition-colors">
+                    Begin Assessment →
+                  </div>
                 </div>
               </div>
             </div>
