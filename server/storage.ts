@@ -848,9 +848,20 @@ export class MemStorage implements IStorage {
     let progressMaterial: LearningMaterial;
     
     if (sessionId) {
-      const totalScenarios = await this.getTotalScenarioCount();
       const visitedScenarios = await this.getVisitedScenariosCount(sessionId);
-      const percentage = totalScenarios > 0 ? Math.round((visitedScenarios / totalScenarios) * 100) : 0;
+      const progress = await this.getGameProgress(sessionId);
+      
+      // Calculate meaningful progress based on journey depth rather than total scenarios
+      // Since users follow one path through the decision tree, we measure steps taken
+      const journeySteps = visitedScenarios;
+      const estimatedJourneyLength = Math.min(8, journeySteps + 2); // Dynamic estimation, cap at 8 steps
+      const percentage = journeySteps > 0 ? Math.min(100, Math.round((journeySteps / estimatedJourneyLength) * 100)) : 0;
+      
+      // Check if user has reached an end state
+      const isCompleted = progress?.currentScenario && 
+        ['happy_student', 'continue_project', 'seek_help', 'project_cancelled'].includes(progress.currentScenario);
+      
+      const displayPercentage = isCompleted ? 100 : percentage;
       
       progressMaterial = {
         id: "scenario-progress",
@@ -858,9 +869,9 @@ export class MemStorage implements IStorage {
         type: "progress",
         icon: "chart",
         content: {
-          completed: visitedScenarios,
-          total: totalScenarios,
-          percentage: percentage
+          completed: journeySteps,
+          total: isCompleted ? journeySteps : estimatedJourneyLength,
+          percentage: displayPercentage
         },
         color: "blue"
       };
@@ -872,7 +883,7 @@ export class MemStorage implements IStorage {
         icon: "chart",
         content: {
           completed: 0,
-          total: await this.getTotalScenarioCount(),
+          total: 8,
           percentage: 0
         },
         color: "blue"
