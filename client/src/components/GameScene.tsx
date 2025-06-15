@@ -87,10 +87,10 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
                 <div
                   key={decision.id}
                   onClick={() => handleDecisionClick(decision)}
-                  className={`academic-card cursor-pointer group transition-all duration-300 ${
+                  className={`cursor-pointer group transition-all duration-300 ${
                     selectedDecisionId === decision.id 
-                      ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-xl transform scale-105' 
-                      : 'hover:shadow-lg hover:transform hover:scale-102'
+                      ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-xl transform scale-105 p-6 rounded-xl border-2 border-yellow-300' 
+                      : 'academic-card hover:shadow-lg hover:transform hover:scale-102'
                   }`}
                 >
                   <div className="flex items-start space-x-4">
@@ -153,10 +153,10 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
               <div
                 key={decision.id}
                 onClick={() => handleDecisionClick(decision)}
-                className={`academic-card cursor-pointer group transition-all duration-300 ${
+                className={`cursor-pointer group transition-all duration-300 ${
                   selectedDecisionId === decision.id 
-                    ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-xl transform scale-105' 
-                    : 'hover:shadow-lg hover:transform hover:scale-102'
+                    ? 'bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-xl transform scale-105 p-6 rounded-xl border-2 border-yellow-300' 
+                    : 'academic-card hover:shadow-lg hover:transform hover:scale-102'
                 }`}
               >
                 <div className="flex items-start space-x-4">
