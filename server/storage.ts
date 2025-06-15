@@ -696,7 +696,92 @@ export class MemStorage implements IStorage {
           "2": "continue_project"
         },
         learningObjectives: ["Research recruitment", "Network utilization"]
-      }
+      },
+
+      // Add missing scenarios from v0.2 specification
+      {
+        id: "lack_diversity",
+        title: "Missing Expertise",
+        description: "Team members share the same expertise; missing other viewpoints and skills.",
+        characterId: "have_team", 
+        decisions: [
+          { id: "1", letter: "🛠️", title: "Run skill audit", description: "Run a skill audit (radar chart) to see missing roles", nextScenario: "skill_audit" },
+          { id: "2", letter: "🤝", title: "Invite guest member", description: "Invite a guest member for one sprint", nextScenario: "guest_join" },
+          { id: "3", letter: "🔍", title: "Post skill-gap call", description: "Post a skill‑gap call in Teams channel", nextScenario: "diversity_call" }
+        ],
+        nextScenarios: { "1": "skill_audit", "2": "guest_join", "3": "diversity_call" },
+        learningObjectives: ["Skill assessment", "Team composition", "Expertise gap analysis"]
+      },
+
+      {
+        id: "scope_overload", 
+        title: "Overwhelming Scope",
+        description: "Team underestimated scope; everyone feels overwhelmed by the project size.",
+        characterId: "have_team",
+        decisions: [
+          { id: "1", letter: "🛠️", title: "MoSCoW prioritisation", description: "Do a MoSCoW prioritisation, cut Could/Won't have features", nextScenario: "moscow_prior" },
+          { id: "2", letter: "🚩", title: "Negotiate with lecturer", description: "Negotiate with lecturer scope/deadline change", nextScenario: "teacher_negotiation" }, 
+          { id: "3", letter: "🤝", title: "Use Scope Canvas", description: "Use Scope Canvas to agree the smallest MVP", nextScenario: "scope_iterate" }
+        ],
+        nextScenarios: { "1": "moscow_prior", "2": "teacher_negotiation", "3": "scope_iterate" },
+        learningObjectives: ["Scope management", "Prioritization", "MVP definition"]
+      },
+
+      // Topic Development Sub-nodes
+      { id: "topic_self_reflect", title: "Self-Reflection Success", description: "Personal brainstorm helped identify compelling problems. Topic direction established.", characterId: "no_topic", decisions: [{ id: "1", letter: "⭐", title: "Continue with chosen topic", description: "Move forward with project", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Self-reflection", "Problem identification"] },
+
+      { id: "topic_ideation_call", title: "Ideation Call Success", description: "Collaborative ideation session generated great ideas. Team has consensus on top 3 options.", characterId: "no_topic", decisions: [{ id: "1", letter: "⭐", title: "Select final topic", description: "Choose from top 3 and proceed", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Collaborative ideation", "Consensus building"] },
+
+      { id: "topic_library", title: "Library Research Success", description: "Challenge library provided inspiring direction. Found resonant problems to tackle.", characterId: "no_topic", decisions: [{ id: "1", letter: "⭐", title: "Develop chosen challenge", description: "Build on selected problem", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Research methods", "Problem exploration"] },
+
+      // Team Formation Sub-nodes
+      { id: "profile_share", title: "Profile Success", description: "Your profile attracted people with complementary abilities. Team is forming!", characterId: "no_team", decisions: [{ id: "1", letter: "⭐", title: "Join the new team", description: "Team formation successful", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Self-presentation", "Team attraction"] },
+
+      { id: "guest_join", title: "Guest Role Success", description: "Guest sprint went well! Team invites you for next sprint. Fresh perspective was valuable.", characterId: "no_team", decisions: [{ id: "1", letter: "⭐", title: "Accept full membership", description: "Join as permanent member", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Trial collaboration", "Value demonstration"] },
+
+      { id: "recruit_own", title: "Recruitment Success", description: "Your job posting attracted quality applicants. Chemistry calls went well.", characterId: "no_team", decisions: [{ id: "1", letter: "⭐", title: "Form the team", description: "Start working together", nextScenario: "continue_project" }, { id: "2", letter: "🚩", title: "Not enough responses", description: "Need to adjust approach", nextScenario: "seek_help" }], nextScenarios: { "1": "continue_project", "2": "seek_help" }, learningObjectives: ["Team recruitment", "Leadership"] },
+
+      // End States
+      { id: "project_cancelled", title: "Project Pivot", description: "Project cancelled or pivoted. Learn, document insights, consider a fresh start.", characterId: null, decisions: [], nextScenarios: {}, learningObjectives: ["Learning from failure", "Reflection"] },
+
+      // Success routing sub-nodes (compact implementations following v0.2 routing conventions)
+      { id: "empathy_check", title: "Communication Improved", description: "Empathy check improved understanding. Team communication flows better.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Continue", description: "Keep collaborating", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Empathy", "Communication"] },
+      
+      { id: "daily_setup", title: "Check-ins Established", description: "Daily rhythms created. Team coordination improved significantly.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Continue", description: "Keep collaborating", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Routine building", "Communication"] },
+      
+      { id: "comm_contract", title: "Contract Success", description: "Communication agreements established. Everyone knows expectations.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Continue", description: "Keep collaborating", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Agreement setting", "Clarity"] },
+
+      { id: "retro_break", title: "Recovery Plan", description: "Retrospective found causes. Recovery plan agreed.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Implement plan", description: "Execute recovery", nextScenario: "continue_project" }, { id: "2", letter: "❌", title: "No agreement", description: "Cannot proceed", nextScenario: "project_cancelled" }], nextScenarios: { "1": "continue_project", "2": "project_cancelled" }, learningObjectives: ["Recovery", "Reflection"] },
+
+      { id: "pivot_new_team", title: "New Team Formed", description: "Successfully formed new team with better dynamics.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Start fresh", description: "Begin collaboration", nextScenario: "continue_project" }, { id: "2", letter: "❌", title: "No one joined", description: "Cannot form team", nextScenario: "project_cancelled" }], nextScenarios: { "1": "continue_project", "2": "project_cancelled" }, learningObjectives: ["Team reformation", "Fresh starts"] },
+
+      { id: "goal_mapping", title: "Goals Aligned", description: "Personal motivations mapped and aligned with project goals.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Continue motivated", description: "Team re-energized", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Motivation", "Goal alignment"] },
+
+      { id: "side_quest", title: "Engagement Restored", description: "Fun challenge restored team energy and collaboration.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Apply to main project", description: "Transfer energy", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Gamification", "Engagement"] },
+
+      { id: "small_wins", title: "Morale Boosted", description: "Celebrating achievements restored team confidence.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Build momentum", description: "Continue progress", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Recognition", "Momentum"] },
+
+      { id: "decision_matrix", title: "Decision Made", description: "Matrix analysis provided clear direction.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Implement decision", description: "Move forward", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Decision making", "Analysis"] },
+
+      { id: "dot_vote", title: "Democratic Choice", description: "Dot voting achieved team consensus on direction.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Proceed with choice", description: "Implement solution", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Democratic process", "Consensus"] },
+
+      { id: "prototype_spike", title: "Option Validated", description: "Prototype testing revealed the best approach.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Build on prototype", description: "Scale solution", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Prototyping", "Validation"] },
+
+      { id: "network_reach", title: "Respondents Found", description: "Personal networks provided research participants.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Begin research", description: "Start data collection", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Network utilization", "Research recruitment"] },
+
+      { id: "platform_recruit", title: "Platform Success", description: "Recruiting platforms delivered quality participants.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Conduct research", description: "Execute study", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Platform usage", "Professional recruitment"] },
+
+      { id: "teacher_broadcast", title: "Broadcast Effective", description: "School newsletter reached target participants.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Schedule sessions", description: "Organize research", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Institutional support", "Broadcast reach"] },
+
+      { id: "skill_audit", title: "Skills Mapped", description: "Radar chart revealed missing expertise areas.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Address gaps", description: "Recruit missing skills", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Skill assessment", "Gap analysis"] },
+
+      { id: "diversity_call", title: "Expertise Added", description: "Skill-gap call attracted needed expertise.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Integrate new skills", description: "Onboard expertise", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Skill acquisition", "Team expansion"] },
+
+      { id: "moscow_prior", title: "Scope Prioritized", description: "MoSCoW method clarified essential features.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Focus on Must-haves", description: "Execute priorities", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Prioritization", "Scope management"] },
+
+      { id: "teacher_negotiation", title: "Scope Adjusted", description: "Lecturer agreed to modified scope and timeline.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Proceed with changes", description: "Work within new scope", nextScenario: "continue_project" }], nextScenarios: { "1": "continue_project" }, learningObjectives: ["Negotiation", "Scope adjustment"] },
+
+      { id: "scope_iterate", title: "MVP Defined", description: "Scope Canvas helped team agree on smallest viable product.", characterId: "have_team", decisions: [{ id: "1", letter: "⭐", title: "Build MVP", description: "Focus on core features", nextScenario: "continue_project" }, { id: "2", letter: "❌", title: "Still conflict", description: "Cannot agree", nextScenario: "project_cancelled" }], nextScenarios: { "1": "continue_project", "2": "project_cancelled" }, learningObjectives: ["MVP planning", "Consensus building"] }
     ];
 
     scenariosData.forEach(scenario => this.scenarios.set(scenario.id, scenario));
