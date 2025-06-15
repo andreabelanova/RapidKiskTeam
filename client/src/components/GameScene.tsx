@@ -1,5 +1,6 @@
 import { Scenario, Decision } from "@shared/schema";
 import { Button } from "@/components/ui/button";
+import { FloatingIcons } from "./FloatingIcons";
 
 const getNodeTheme = (scenarioId: string) => {
   if (scenarioId === "start") return "bg-gradient-to-br from-blue-500 to-blue-600";
@@ -40,6 +41,7 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
 
   return (
     <div className={`absolute inset-0 flex flex-col transition-all duration-500 ${themeClass}`}>
+      <FloatingIcons scenarioId={scenario.id} />
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 max-w-4xl w-full shadow-2xl">
           <div className="text-center mb-6">
@@ -58,15 +60,15 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
                 data-decision={decision.id}
                 onClick={() => handleDecisionClick(decision)}
                 variant="ghost"
-                className="w-full text-left p-4 bg-game-light hover:bg-game-yellow/20 rounded-xl transition-all duration-200 border-2 border-transparent hover:border-game-yellow h-auto"
+                className="w-full text-left p-4 bg-white/80 hover:bg-game-yellow/30 rounded-xl transition-all duration-300 border-2 border-transparent hover:border-game-yellow h-auto hover:shadow-lg hover:scale-[1.02] backdrop-blur-sm"
               >
                 <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-game-blue rounded-full flex items-center justify-center text-white text-lg font-bold flex-shrink-0 mt-1">
+                  <div className="w-8 h-8 bg-game-blue rounded-full flex items-center justify-center text-white text-lg font-bold flex-shrink-0 mt-1 hover:scale-110 transition-transform duration-200">
                     {decision.letter}
                   </div>
                   <div className="text-left">
-                    <p className="font-medium text-game-dark">{decision.title}</p>
-                    <p className="text-sm text-game-dark/70 mt-1">{decision.description}</p>
+                    <p className="font-medium text-game-dark group-hover:text-game-dark transition-colors duration-200">{decision.title}</p>
+                    <p className="text-sm text-game-dark/70 mt-1 group-hover:text-game-dark/80 transition-colors duration-200">{decision.description}</p>
                   </div>
                 </div>
               </Button>

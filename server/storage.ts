@@ -349,6 +349,115 @@ export class MemStorage implements IStorage {
         decisions: [],
         nextScenarios: {},
         learningObjectives: ["Success achievement", "Team satisfaction"]
+      },
+
+      // Missing scenario nodes
+      {
+        id: "no_comm",
+        title: "Communication Issues",
+        description: "Team members aren't sharing information effectively. How do you improve communication?",
+        characterId: "have_team",
+        decisions: [
+          {
+            id: "1",
+            letter: "🛠",
+            title: "Set up regular check-ins",
+            description: "Schedule daily stand-ups and weekly team meetings",
+            nextScenario: "continue_project"
+          },
+          {
+            id: "2",
+            letter: "🔍",
+            title: "Create communication charter",
+            description: "Define how and when team communicates",
+            nextScenario: "continue_project"
+          }
+        ],
+        nextScenarios: {
+          "1": "continue_project",
+          "2": "continue_project"
+        },
+        learningObjectives: ["Communication protocols", "Team alignment"]
+      },
+
+      {
+        id: "round_robin_start",
+        title: "Round-Robin Success",
+        description: "Time-boxed speaking worked! Everyone contributed equally to the discussion. ⭐",
+        characterId: "have_team",
+        decisions: [
+          {
+            id: "1",
+            letter: "⭐",
+            title: "Continue with structured discussions",
+            description: "Team has learned effective meeting facilitation",
+            nextScenario: "continue_project"
+          }
+        ],
+        nextScenarios: {
+          "1": "continue_project"
+        },
+        learningObjectives: ["Meeting facilitation", "Equal participation"]
+      },
+
+      {
+        id: "talk_time_reflect",
+        title: "Talk-Time Insights",
+        description: "The speaking patterns visualization helped the team see the imbalance. Now everyone is more aware. ⭐",
+        characterId: "have_team",
+        decisions: [
+          {
+            id: "1",
+            letter: "⭐",
+            title: "Continue using data-driven insights",
+            description: "Team commits to regular speaking pattern reviews",
+            nextScenario: "continue_project"
+          }
+        ],
+        nextScenarios: {
+          "1": "continue_project"
+        },
+        learningObjectives: ["Data-driven awareness", "Self-monitoring"]
+      },
+
+      {
+        id: "parking_lot_feedback",
+        title: "Parking Lot Strategy",
+        description: "Moving topics to a parking lot and giving private feedback helped manage the dominant behavior. ⭐",
+        characterId: "have_team",
+        decisions: [
+          {
+            id: "1",
+            letter: "⭐",
+            title: "Establish meeting facilitation protocol",
+            description: "Team agrees on structured meeting management",
+            nextScenario: "continue_project"
+          }
+        ],
+        nextScenarios: {
+          "1": "continue_project"
+        },
+        learningObjectives: ["Conflict management", "Private feedback techniques"]
+      },
+
+      {
+        id: "124_all_online",
+        title: "1-2-4-All Success",
+        description: "The structured breakout approach gave everyone a voice and generated better ideas. ⭐",
+        characterId: "have_team",
+        decisions: [
+          {
+            id: "1",
+            letter: "⭐",
+            title: "Adopt structured ideation methods",
+            description: "Team learns effective online collaboration techniques",
+            nextScenario: "continue_project"
+          }
+        ],
+        nextScenarios: {
+          "1": "continue_project"
+        },
+        learningObjectives: ["Structured collaboration", "Online facilitation"]
       }
     ];
 

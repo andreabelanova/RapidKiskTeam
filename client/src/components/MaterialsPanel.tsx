@@ -103,9 +103,14 @@ export function MaterialsPanel({ isOpen, onClose }: MaterialsPanelProps) {
   return (
     <>
       <div 
-        className={`materials-panel fixed top-0 right-0 w-full md:w-96 h-full bg-white shadow-2xl z-40 overflow-y-auto ${
+        className={`materials-panel fixed top-0 right-0 w-full md:w-96 h-full bg-white/90 backdrop-blur-xl shadow-2xl z-40 overflow-y-auto border-l border-white/20 ${
           isOpen ? 'open' : ''
         }`}
+        style={{
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 248, 255, 0.9) 100%)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+        }}
       >
         <div className="p-6">
           <div className="flex items-center justify-between mb-6">
@@ -132,7 +137,13 @@ export function MaterialsPanel({ isOpen, onClose }: MaterialsPanelProps) {
           ) : (
             <div className="space-y-6">
               {materials?.map((material) => (
-                <div key={material.id} className={`rounded-xl p-4 ${getColorClasses(material.color)}`}>
+                <div 
+                  key={material.id} 
+                  className={`rounded-xl p-4 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 ${getColorClasses(material.color)}`}
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+                  }}
+                >
                   <h4 className="font-semibold text-game-dark mb-2 flex items-center">
                     <span className={getColorClasses(material.color).split(' ')[1]}>
                       {getIcon(material.icon)}

@@ -109,6 +109,12 @@ export default function Game() {
       // Load next scenario if available
       if (decision.nextScenario) {
         await loadScenario(decision.nextScenario);
+        
+        // Auto-open materials panel for scenarios with support resources
+        const scenariosWithMaterials = ['dominant_member', 'decision_conflict', 'find_team', 'guest_join'];
+        if (scenariosWithMaterials.includes(decision.nextScenario)) {
+          setTimeout(() => setMaterialsOpen(true), 1000);
+        }
       } else {
         // End of scenario chain
         console.log("Scenario completed!");
