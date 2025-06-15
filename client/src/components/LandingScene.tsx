@@ -74,34 +74,42 @@ export function LandingScene({ characters, onCharacterSelect, isVisible }: Landi
               }`}
               onClick={() => handleCharacterClick(character)}
             >
-              <div className="p-2">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
-                    <CharacterIllustration 
-                      type={character.id as 'have_team' | 'no_team' | 'no_topic'} 
-                      className="w-20 h-16 object-contain drop-shadow-sm"
-                    />
+              <div className="overflow-hidden">
+                {/* Large full-width image */}
+                <div className="w-full">
+                  <CharacterIllustration 
+                    type={character.id as 'have_team' | 'no_team' | 'no_topic'} 
+                    className="w-full h-32 object-cover"
+                  />
+                </div>
+                
+                {/* Content below image */}
+                <div className="p-4">
+                  {/* H2 Headline */}
+                  <h2 className="text-xl font-medium academic-text mb-3">
+                    {character.name}
+                  </h2>
+                  
+                  {/* Perex text */}
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                    {character.description}
+                  </p>
+                  
+                  {/* Chips */}
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {character.traits.map((trait) => (
+                      <span
+                        key={trait}
+                        className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
+                      >
+                        {trait}
+                      </span>
+                    ))}
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-medium academic-text mb-3">
-                      {character.name}
-                    </h3>
-                    <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-4">
-                      {character.description}
-                    </p>
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {character.traits.map((trait) => (
-                        <span
-                          key={trait}
-                          className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
-                        >
-                          {trait}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="text-academic-blue text-sm font-medium group-hover:text-blue-700 transition-colors">
-                      Begin Assessment →
-                    </div>
+                  
+                  {/* Call to action */}
+                  <div className="text-academic-blue text-sm font-medium group-hover:text-blue-700 transition-colors">
+                    Begin Assessment →
                   </div>
                 </div>
               </div>
