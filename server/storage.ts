@@ -383,35 +383,117 @@ export class MemStorage implements IStorage {
         learningObjectives: ["Networking", "Team formation", "Skill assessment"]
       },
 
-      // Success Paths
+      // Enhanced End States with Custom Illustrations
       {
         id: "continue_project",
-        title: "Success",
-        description: "Problem mitigated, team continues work. Continue iterating and apply further principles of radical collaboration.",
-        characterId: null,
+        title: "Project Continues Successfully",
+        description: "🔄 Problem mitigated! Your team has overcome the challenge and is ready to move forward. The collaborative approach worked, and everyone is aligned on next steps. Keep iterating and applying radical collaboration principles as you progress.",
+        characterId: "continue_project",
         decisions: [
           {
             id: "1",
             letter: "⭐",
-            title: "Continue with project",
-            description: "Team is functioning well and making progress",
+            title: "Continue with renewed energy",
+            description: "Team is functioning well and making excellent progress",
             nextScenario: "happy_student"
+          },
+          {
+            id: "2", 
+            letter: "🔄",
+            title: "Start a new scenario",
+            description: "Practice with a different team challenge",
+            nextScenario: "start"
           }
         ],
         nextScenarios: {
-          "1": "happy_student"
+          "1": "happy_student",
+          "2": "start"
         },
-        learningObjectives: ["Success reinforcement", "Continuous improvement"]
+        learningObjectives: ["Problem resolution", "Collaborative success", "Continuous improvement"]
       },
 
       {
         id: "happy_student",
-        title: "Happy Student",
-        description: "Satisfied KISK student – team functions, project progresses and relationships are constructive. ⭐",
-        characterId: null,
-        decisions: [],
-        nextScenarios: {},
-        learningObjectives: ["Success achievement", "Team satisfaction"]
+        title: "Mission Accomplished!",
+        description: "⭐ Congratulations! You are now a satisfied KISK student with a thriving team. Your project is progressing smoothly, relationships are constructive, and you've mastered key collaboration skills. You've successfully navigated team challenges using radical collaboration principles!",
+        characterId: "happy_student",
+        decisions: [
+          {
+            id: "1",
+            letter: "🎉",
+            title: "Celebrate your success",
+            description: "Reflect on your learning journey and achievements",
+            nextScenario: "start"
+          },
+          {
+            id: "2",
+            letter: "🔄",
+            title: "Try another scenario",
+            description: "Practice more team collaboration skills",
+            nextScenario: "start"
+          }
+        ],
+        nextScenarios: {
+          "1": "start",
+          "2": "start"
+        },
+        learningObjectives: ["Success achievement", "Team satisfaction", "Skill mastery"]
+      },
+
+      {
+        id: "seek_help",
+        title: "External Support Needed",
+        description: "🆘 Sometimes the best decision is knowing when to ask for help. Your team situation requires external intervention from a lecturer, mentor, or mediator. This isn't failure—it's wisdom. Professional support can provide fresh perspectives and resolution strategies.",
+        characterId: "seek_help",
+        decisions: [
+          {
+            id: "1",
+            letter: "📞",
+            title: "Contact your lecturer",
+            description: "Reach out for academic guidance and support",
+            nextScenario: "start"
+          },
+          {
+            id: "2",
+            letter: "🔄",
+            title: "Try a different approach",
+            description: "Explore alternative collaboration strategies",
+            nextScenario: "start"
+          }
+        ],
+        nextScenarios: {
+          "1": "start",
+          "2": "start"
+        },
+        learningObjectives: ["Help-seeking skills", "Resource identification", "Professional judgment"]
+      },
+
+      {
+        id: "project_cancelled",
+        title: "Learning from Setbacks",
+        description: "❌ Project cancelled or pivoted. While this outcome feels challenging, it's a valuable learning experience. Document your insights, reflect on what worked and what didn't, and consider this preparation for your next collaboration. Every setback builds resilience and wisdom.",
+        characterId: "project_cancelled",
+        decisions: [
+          {
+            id: "1",
+            letter: "📝",
+            title: "Document lessons learned",
+            description: "Reflect and capture insights for future projects",
+            nextScenario: "start"
+          },
+          {
+            id: "2",
+            letter: "🔄",
+            title: "Start fresh with new knowledge",
+            description: "Apply what you've learned to a new scenario",
+            nextScenario: "start"
+          }
+        ],
+        nextScenarios: {
+          "1": "start",
+          "2": "start"
+        },
+        learningObjectives: ["Learning from failure", "Reflection skills", "Resilience building"]
       },
 
       // Communication Issues (v0.2)
@@ -634,15 +716,7 @@ export class MemStorage implements IStorage {
         learningObjectives: ["Conflict resolution", "Team repair", "Mediation"]
       },
 
-      {
-        id: "seek_help",
-        title: "External Support Required",
-        description: "Team needs external help – contact instructor or mentor for next steps. 🆘",
-        characterId: null,
-        decisions: [],
-        nextScenarios: {},
-        learningObjectives: ["Knowing when to seek help", "Resource identification"]
-      },
+
 
       {
         id: "low_motivation",
