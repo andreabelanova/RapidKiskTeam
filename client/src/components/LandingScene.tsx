@@ -79,7 +79,7 @@ export function LandingScene({ characters, onCharacterSelect, isVisible }: Landi
                 <div className="w-full">
                   <CharacterIllustration 
                     type={character.id as 'have_team' | 'no_team' | 'no_topic'} 
-                    className="w-full h-32 object-cover"
+                    className="w-full h-32 object-contain bg-gray-50"
                   />
                 </div>
                 
