@@ -41,7 +41,7 @@ export class MemStorage implements IStorage {
         name: "The Facilitator",
         description: "Natural leader who guides team discussions and ensures everyone's voice is heard. Excels at conflict resolution and maintaining group focus.",
         traits: ["Leadership", "Communication", "Empathy"],
-        imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=300",
+        imageUrl: "/assets/chrome_2yffM9tYuE_1749982595332.png",
         colorTheme: "blue"
       },
       {
@@ -49,7 +49,7 @@ export class MemStorage implements IStorage {
         name: "The Analyzer",
         description: "Detail-oriented problem solver who breaks down complex issues and provides data-driven insights. Skilled at identifying potential risks and opportunities.",
         traits: ["Analysis", "Problem Solving", "Research"],
-        imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=300",
+        imageUrl: "/assets/chrome_KHZdPfBfLi_1749982595334.png",
         colorTheme: "yellow"
       },
       {
@@ -57,7 +57,7 @@ export class MemStorage implements IStorage {
         name: "The Creator",
         description: "Innovative thinker who brings fresh perspectives and creative solutions. Thrives on brainstorming and turning ideas into actionable plans.",
         traits: ["Creativity", "Innovation", "Vision"],
-        imageUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=300",
+        imageUrl: "/assets/chrome_2yffM9tYuE_1749982595332.png",
         colorTheme: "gradient"
       }
     ];
@@ -157,6 +157,8 @@ export class MemStorage implements IStorage {
     const gameProgress: GameProgress = { 
       ...progress, 
       id,
+      selectedCharacter: progress.selectedCharacter || null,
+      currentScenario: progress.currentScenario || null,
       completedScenarios: progress.completedScenarios || [],
       decisions: progress.decisions || {}
     };

@@ -77,11 +77,11 @@ export function LandingScene({ characters, onCharacterSelect, isVisible }: Landi
               }`}
               onClick={() => handleCharacterClick(character)}
             >
-              <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gradient-to-br from-game-yellow to-yellow-300">
+              <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-4 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-50 to-yellow-50 p-2">
                 <img 
                   src={character.imageUrl}
                   alt={`${character.name} character`}
-                  className="w-full h-full object-cover" 
+                  className="w-full h-full object-contain" 
                 />
               </div>
               <h4 className="text-xl md:text-2xl font-bold text-game-dark mb-3 text-center">

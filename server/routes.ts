@@ -1,10 +1,15 @@
 import type { Express } from "express";
+import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertGameProgressSchema } from "@shared/schema";
 import { z } from "zod";
+import path from "path";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Serve static assets
+  app.use('/assets', express.static(path.join(process.cwd(), 'attached_assets')));
+
   // Get all characters
   app.get("/api/characters", async (req, res) => {
     try {
