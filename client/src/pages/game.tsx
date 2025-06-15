@@ -20,6 +20,7 @@ export default function Game() {
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [currentScenario, setCurrentScenario] = useState<Scenario | null>(null);
   const [materialsOpen, setMaterialsOpen] = useState(false);
+  const [navigationHistory, setNavigationHistory] = useState<NavigationHistory[]>([]);
   const [sessionId] = useState(() => `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`);
 
   // Fetch characters
@@ -85,9 +86,15 @@ export default function Game() {
   };
 
   const handleDecisionSelect = async (decision: Decision) => {
-    if (!currentScenario || !selectedCharacter) return;
+    if (!currentScenario) return;
 
     try {
+      // Add current state to navigation history
+      setNavigationHistory(prev => [...prev, {
+        scenarioId: currentScenario.id,
+        selectedCharacter: selectedCharacter || undefined
+      }]);
+
       // Update game progress with decision
       await updateProgressMutation.mutateAsync({
         sessionId,
@@ -101,8 +108,7 @@ export default function Game() {
 
       // Load next scenario if available
       if (decision.nextScenario) {
-        const nextScenario = await gameApi.getScenario(decision.nextScenario);
-        setCurrentScenario(nextScenario);
+        await loadScenario(decision.nextScenario);
       } else {
         // End of scenario chain
         console.log("Scenario completed!");
@@ -113,9 +119,34 @@ export default function Game() {
   };
 
   const handleBackClick = () => {
-    setGameState("landing");
-    setSelectedCharacter(null);
-    setCurrentScenario(null);
+    if (navigationHistory.length > 0) {
+      const previousState = navigationHistory[navigationHistory.length - 1];
+      setNavigationHistory(prev => prev.slice(0, -1));
+      
+      if (previousState.scenarioId === "start") {
+        setGameState("landing");
+        setSelectedCharacter(null);
+        loadScenario("start");
+      } else {
+        loadScenario(previousState.scenarioId);
+        if (previousState.selectedCharacter) {
+          setSelectedCharacter(previousState.selectedCharacter);
+        }
+      }
+    } else {
+      setGameState("landing");
+      setSelectedCharacter(null);
+      loadScenario("start");
+    }
+  };
+
+  const loadScenario = async (scenarioId: string) => {
+    try {
+      const scenario = await gameApi.getScenario(scenarioId);
+      setCurrentScenario(scenario);
+    } catch (error) {
+      console.error("Failed to load scenario:", error);
+    }
   };
 
   const toggleMaterials = () => {

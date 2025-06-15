@@ -1,6 +1,17 @@
 import { Scenario, Decision } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 
+const getNodeTheme = (scenarioId: string) => {
+  if (scenarioId === "start") return "bg-gradient-to-br from-blue-500 to-blue-600";
+  if (scenarioId.includes("team") || scenarioId.includes("problem") || scenarioId.includes("conflict")) {
+    return "bg-gradient-to-br from-red-500 to-orange-500";
+  }
+  if (scenarioId.includes("success") || scenarioId.includes("happy") || scenarioId.includes("continue")) {
+    return "bg-gradient-to-br from-green-500 to-emerald-500";
+  }
+  return "bg-gradient-to-br from-blue-500 to-indigo-500";
+};
+
 interface GameSceneProps {
   scenario: Scenario;
   onDecisionSelect: (decision: Decision) => void;
@@ -25,8 +36,10 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
     }, 500);
   };
 
+  const themeClass = getNodeTheme(scenario.id);
+
   return (
-    <div className="absolute inset-0 flex flex-col transition-all duration-500">
+    <div className={`absolute inset-0 flex flex-col transition-all duration-500 ${themeClass}`}>
       <div className="flex-1 flex items-center justify-center p-4">
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 max-w-4xl w-full shadow-2xl">
           <div className="text-center mb-6">

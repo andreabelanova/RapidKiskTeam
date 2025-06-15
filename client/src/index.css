@@ -29,6 +29,12 @@
   --game-blue: hsl(207, 90%, 54%);
   --game-dark: hsl(210, 11%, 15%);
   --game-light: hsl(210, 17%, 98%);
+  
+  /* Node Type Colors */
+  --node-start: hsl(207, 90%, 54%);
+  --node-problem: hsl(15, 85%, 55%);
+  --node-solution: hsl(142, 76%, 36%);
+  --node-success: hsl(84, 81%, 44%);
 }
 
 .dark {
