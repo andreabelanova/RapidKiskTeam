@@ -37,8 +37,9 @@ export const gameApi = {
     return res.json();
   },
 
-  getLearningMaterials: async (): Promise<LearningMaterial[]> => {
-    const res = await apiRequest("GET", "/api/learning-materials");
+  getLearningMaterials: async (sessionId?: string): Promise<LearningMaterial[]> => {
+    const url = sessionId ? `/api/learning-materials?sessionId=${sessionId}` : "/api/learning-materials";
+    const res = await apiRequest("GET", url);
     return res.json();
   }
 };

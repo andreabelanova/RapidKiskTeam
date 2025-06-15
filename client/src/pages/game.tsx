@@ -95,16 +95,29 @@ export default function Game() {
         selectedCharacter: selectedCharacter || undefined
       }]);
 
-      // Update game progress with decision
+      // Update game progress with decision and track visited scenario
+      const existingProgress = await gameApi.getGameProgress(sessionId).catch(() => null);
+      const completedScenarios = existingProgress?.completedScenarios || [];
+      
+      // Add current scenario to completed list if not already present
+      const updatedCompletedScenarios = completedScenarios.includes(currentScenario.id) 
+        ? completedScenarios 
+        : [...completedScenarios, currentScenario.id];
+
       await updateProgressMutation.mutateAsync({
         sessionId,
         updates: {
           currentScenario: currentScenario.id,
+          completedScenarios: updatedCompletedScenarios,
           decisions: {
+            ...(existingProgress?.decisions || {}),
             [currentScenario.id]: decision.id,
           },
         },
       });
+
+      // Invalidate learning materials cache to update progress bar
+      queryClient.invalidateQueries({ queryKey: ["/api/learning-materials", sessionId] });
 
       // Load next scenario if available
       if (decision.nextScenario) {

@@ -14,7 +14,10 @@ interface MaterialsPanelProps {
 export function MaterialsPanel({ isOpen, onClose, sessionId }: MaterialsPanelProps) {
   const { data: materials, isLoading } = useQuery({
     queryKey: ["/api/learning-materials", sessionId],
-    queryFn: gameApi.getLearningMaterials,
+    queryFn: ({ queryKey }) => {
+      const [, sessionId] = queryKey;
+      return gameApi.getLearningMaterials(sessionId as string);
+    },
   });
 
   const getIcon = (iconName: string) => {
