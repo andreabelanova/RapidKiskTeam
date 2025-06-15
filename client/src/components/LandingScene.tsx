@@ -11,14 +11,14 @@ interface LandingSceneProps {
 }
 
 export function LandingScene({ characters, onCharacterSelect, isVisible }: LandingSceneProps) {
-  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+  const [selectedCharacterId, setSelectedCharacterId] = useState<string | null>(null);
 
   const handleCharacterClick = (character: Character) => {
-    setSelectedCharacter(character);
+    setSelectedCharacterId(character.id);
     // Add selection animation delay
     setTimeout(() => {
       onCharacterSelect(character);
-    }, 500);
+    }, 1000);
   };
 
   const getCharacterButtonClass = (character: Character) => {
@@ -69,8 +69,10 @@ export function LandingScene({ characters, onCharacterSelect, isVisible }: Landi
           {characters.map((character) => (
             <div
               key={character.id}
-              className={`bg-white rounded-16 shadow-lg border-2 cursor-pointer group transition-all duration-300 hover:shadow-xl hover:border-academic-blue ${
-                selectedCharacter?.id === character.id ? 'border-academic-blue bg-academic-blue-light' : 'border-academic-gray'
+              className={`bg-white rounded-16 shadow-lg border-2 cursor-pointer transition-all duration-300 ${
+                selectedCharacterId === character.id 
+                  ? '!bg-gradient-to-r !from-yellow-400 !to-yellow-500 !border-yellow-300' 
+                  : 'hover:shadow-xl hover:border-academic-blue border-academic-gray'
               }`}
               onClick={() => handleCharacterClick(character)}
             >
