@@ -72,7 +72,7 @@ export function LandingScene({ characters, onCharacterSelect, isVisible }: Landi
               className={`bg-white rounded-16 shadow-lg border-2 cursor-pointer transition-all duration-300 ${
                 selectedCharacterId === character.id 
                   ? '!bg-gradient-to-r !from-yellow-400 !to-yellow-500 !border-yellow-300' 
-                  : 'hover:shadow-xl hover:border-academic-blue border-academic-gray'
+                  : 'border-academic-gray hover:shadow-xl hover:!border-blue-500'
               }`}
               onClick={() => handleCharacterClick(character)}
             >

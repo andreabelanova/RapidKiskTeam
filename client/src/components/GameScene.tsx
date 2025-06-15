@@ -92,10 +92,10 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
                 <div
                   key={decision.id}
                   onClick={() => handleDecisionClick(decision)}
-                  className={`academic-card cursor-pointer transition-all duration-300 ${
+                  className={`academic-card cursor-pointer transition-all duration-300 border-2 ${
                     selectedDecisionId === decision.id 
-                      ? '!bg-gradient-to-r !from-yellow-400 !to-yellow-500 !border-yellow-300 border-2' 
-                      : 'group hover:shadow-lg hover:transform hover:scale-102 hover:border-academic-blue'
+                      ? '!bg-gradient-to-r !from-yellow-400 !to-yellow-500 !border-yellow-300' 
+                      : 'group border-academic-gray hover:shadow-lg hover:transform hover:scale-102 hover:!border-blue-500'
                   }`}
                 >
                   <div className="flex items-start space-x-4">
@@ -158,10 +158,10 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
               <div
                 key={decision.id}
                 onClick={() => handleDecisionClick(decision)}
-                className={`academic-card cursor-pointer transition-all duration-300 ${
+                className={`academic-card cursor-pointer transition-all duration-300 border-2 ${
                   selectedDecisionId === decision.id 
-                    ? '!bg-gradient-to-r !from-yellow-400 !to-yellow-500 !border-yellow-300 border-2' 
-                    : 'group hover:shadow-lg hover:transform hover:scale-102 hover:border-academic-blue'
+                    ? '!bg-gradient-to-r !from-yellow-400 !to-yellow-500 !border-yellow-300' 
+                    : 'group border-academic-gray hover:shadow-lg hover:transform hover:scale-102 hover:!border-blue-500'
                 }`}
               >
                 <div className="flex items-start space-x-4">
