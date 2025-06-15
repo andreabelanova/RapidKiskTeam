@@ -51,8 +51,8 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
     
     setTimeout(() => {
       onDecisionSelect(decision);
-      setSelectedDecisionId(null); // Reset selection after navigation
-    }, 500);
+      // Don't reset selection - let it persist until next scenario loads
+    }, 1000); // Longer delay to show selection
   };
 
   // Enhanced end-state layout with 100metod styling
@@ -87,10 +87,10 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
                 <div
                   key={decision.id}
                   onClick={() => handleDecisionClick(decision)}
-                  className={`academic-card cursor-pointer group transition-all duration-300 ${
+                  className={`academic-card cursor-pointer transition-all duration-300 ${
                     selectedDecisionId === decision.id 
-                      ? '!bg-gradient-to-r !from-yellow-400 !to-yellow-500 shadow-xl transform scale-105 border-2 !border-yellow-300' 
-                      : 'hover:shadow-lg hover:transform hover:scale-102'
+                      ? '!bg-gradient-to-r !from-yellow-400 !to-yellow-500 !border-yellow-300 border-2' 
+                      : 'group hover:shadow-lg hover:transform hover:scale-102 hover:border-academic-blue'
                   }`}
                 >
                   <div className="flex items-start space-x-4">
@@ -153,10 +153,10 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
               <div
                 key={decision.id}
                 onClick={() => handleDecisionClick(decision)}
-                className={`academic-card cursor-pointer group transition-all duration-300 ${
+                className={`academic-card cursor-pointer transition-all duration-300 ${
                   selectedDecisionId === decision.id 
-                    ? '!bg-gradient-to-r !from-yellow-400 !to-yellow-500 shadow-xl transform scale-105 border-2 !border-yellow-300' 
-                    : 'hover:shadow-lg hover:transform hover:scale-102'
+                    ? '!bg-gradient-to-r !from-yellow-400 !to-yellow-500 !border-yellow-300 border-2' 
+                    : 'group hover:shadow-lg hover:transform hover:scale-102 hover:border-academic-blue'
                 }`}
               >
                 <div className="flex items-start space-x-4">
