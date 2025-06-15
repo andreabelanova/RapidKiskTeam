@@ -48,7 +48,7 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
                 className="w-full text-left p-4 bg-game-light hover:bg-game-yellow/20 rounded-xl transition-all duration-200 border-2 border-transparent hover:border-game-yellow h-auto"
               >
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-game-blue rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0 mt-1">
+                  <div className="w-8 h-8 bg-game-blue rounded-full flex items-center justify-center text-white text-lg font-bold flex-shrink-0 mt-1">
                     {decision.letter}
                   </div>
                   <div className="text-left">

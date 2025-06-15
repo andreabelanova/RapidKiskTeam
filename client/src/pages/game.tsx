@@ -10,6 +10,11 @@ import { queryClient } from "@/lib/queryClient";
 
 type GameState = "landing" | "playing";
 
+interface NavigationHistory {
+  scenarioId: string;
+  selectedCharacter?: Character;
+}
+
 export default function Game() {
   const [gameState, setGameState] = useState<GameState>("landing");
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
@@ -40,18 +45,20 @@ export default function Game() {
     },
   });
 
-  // Get first scenario when character is selected
-  const { data: scenarios } = useQuery({
-    queryKey: ["/api/characters", selectedCharacter?.id, "scenarios"],
-    queryFn: () => gameApi.getCharacterScenarios(selectedCharacter!.id),
-    enabled: !!selectedCharacter,
-  });
-
+  // Load scenarios on mount
   useEffect(() => {
-    if (scenarios && scenarios.length > 0 && !currentScenario) {
-      setCurrentScenario(scenarios[0]);
-    }
-  }, [scenarios, currentScenario]);
+    const loadStartScenario = async () => {
+      if (gameState === "landing" && !currentScenario) {
+        try {
+          const scenario = await gameApi.getScenario("start");
+          setCurrentScenario(scenario);
+        } catch (error) {
+          console.error("Failed to load start scenario:", error);
+        }
+      }
+    };
+    loadStartScenario();
+  }, [gameState, currentScenario]);
 
   const handleCharacterSelect = async (character: Character) => {
     setSelectedCharacter(character);
@@ -64,6 +71,14 @@ export default function Game() {
       });
     } catch (error) {
       console.error("Failed to create game progress:", error);
+    }
+    
+    // Load the character-specific scenario
+    try {
+      const nextScenario = await gameApi.getScenario(character.id);
+      setCurrentScenario(nextScenario);
+    } catch (error) {
+      console.error("Failed to load character scenario:", error);
     }
     
     setGameState("playing");

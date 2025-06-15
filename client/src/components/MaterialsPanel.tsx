@@ -77,6 +77,7 @@ export function MaterialsPanel({ isOpen, onClose }: MaterialsPanelProps) {
         );
       
       case "download":
+      case "resource":
         const resources = material.content as Array<{ title: string; url: string }>;
         return (
           <div className="space-y-2">
@@ -84,6 +85,8 @@ export function MaterialsPanel({ isOpen, onClose }: MaterialsPanelProps) {
               <a
                 key={index}
                 href={resource.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="block text-sm text-purple-600 hover:text-purple-800 hover:underline"
               >
                 {resource.title}
