@@ -24,14 +24,19 @@
   --ring: hsl(20, 14.3%, 4.1%);
   --radius: 0.5rem;
   
-  /* Academic Colors - 100metod inspired */
-  --academic-blue: hsl(207, 90%, 54%);
-  --academic-yellow: hsl(51, 100%, 50%);
-  --academic-dark: hsl(210, 15%, 25%);
-  --academic-light: hsl(0, 0%, 98%);
+  /* 100metod inspired colors */
+  --academic-blue: hsl(240, 100%, 50%);
+  --academic-blue-light: hsl(240, 100%, 95%);
+  --academic-blue-dark: hsl(240, 100%, 40%);
+  --academic-yellow: hsl(45, 100%, 51%);
+  --academic-yellow-light: hsl(45, 100%, 95%);
+  --academic-dark: hsl(220, 20%, 20%);
+  --academic-light: hsl(220, 25%, 98%);
   --academic-white: hsl(0, 0%, 100%);
-  --academic-gray: hsl(210, 10%, 85%);
-  --academic-text: hsl(210, 15%, 20%);
+  --academic-gray: hsl(220, 15%, 90%);
+  --academic-gray-light: hsl(220, 20%, 96%);
+  --academic-text: hsl(220, 20%, 15%);
+  --academic-text-light: hsl(220, 15%, 45%);
 }
 
 .dark {
@@ -109,14 +114,32 @@
   .academic-card {
     background: var(--academic-white);
     border: 1px solid var(--academic-gray);
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 32px;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   }
   
   .academic-card:hover {
     border-color: var(--academic-blue);
-    box-shadow: 0 4px 12px rgba(30, 136, 229, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 255, 0.08);
+    transform: translateY(-2px);
+  }
+  
+  .bg-academic-light {
+    background-color: var(--academic-light);
+  }
+  
+  .bg-academic-blue-light {
+    background-color: var(--academic-blue-light);
+  }
+  
+  .bg-academic-gray-light {
+    background-color: var(--academic-gray-light);
+  }
+  
+  .text-academic-text-light {
+    color: var(--academic-text-light);
   }
   
   .line-clamp-4 {
