@@ -51,75 +51,63 @@ export function LandingScene({ characters, onCharacterSelect, isVisible }: Landi
   if (!isVisible) return null;
 
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 transition-all duration-500">
-      <div className="text-center mb-12 animate-bounce-gentle">
-        <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-          RapidKISK Team
-        </h2>
-        <p className="text-xl md:text-2xl text-game-yellow font-medium mb-2">Interactive Game</p>
-        <p className="text-lg text-white/90 max-w-2xl mx-auto">
-          Master team collaboration skills through interactive decision-making scenarios. 
-          Choose your character and navigate real-world online education challenges.
-        </p>
-      </div>
+    <div className="bg-academic-white min-h-screen">
+      <div className="academic-container py-16">
+        <div className="text-center academic-spacing">
+          <h2 className="text-3xl font-light academic-text mb-4">
+            Where are you on your team journey?
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            This interactive decision support tool helps you navigate common team collaboration 
+            challenges in online education environments. Select your current situation to receive 
+            personalized guidance.
+          </p>
+        </div>
 
-      <div className="w-full max-w-6xl mx-auto">
-        <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">
-          Choose Your Character
-        </h3>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {characters.map((character) => (
             <div
               key={character.id}
-              className={`character-card bg-white rounded-2xl p-6 shadow-2xl cursor-pointer hover:shadow-3xl transition-all duration-300 ${
-                selectedCharacter?.id === character.id ? 'animate-pulse-glow scale-105' : ''
+              className={`academic-card cursor-pointer group ${
+                selectedCharacter?.id === character.id ? 'border-academic-blue shadow-lg' : ''
               }`}
               onClick={() => handleCharacterClick(character)}
             >
-              <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-4 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-50 to-yellow-50 p-2">
-                <img 
-                  src={character.imageUrl}
-                  alt={`${character.name} character`}
-                  className="w-full h-full object-contain" 
-                />
-              </div>
-              <h4 className="text-xl md:text-2xl font-bold text-game-dark mb-3 text-center">
-                {character.name}
-              </h4>
-              <p className="text-game-dark/80 text-center mb-4 text-sm md:text-base">
-                {character.description}
-              </p>
-              <div className="flex flex-wrap gap-2 justify-center mb-4">
-                {character.traits.map((trait) => (
-                  <span
-                    key={trait}
-                    className={`px-3 py-1 rounded-full text-xs font-medium ${getTraitColors(trait)}`}
-                  >
-                    {trait}
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-6 bg-academic-blue/10 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl academic-blue">
+                    {character.id === 'have_team' ? '👥' : 
+                     character.id === 'no_team' ? '🔍' : '💡'}
                   </span>
-                ))}
+                </div>
+                <h3 className="text-xl font-medium academic-text mb-4">
+                  {character.name}
+                </h3>
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  {character.description}
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center mb-6">
+                  {character.traits.map((trait) => (
+                    <span
+                      key={trait}
+                      className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
+                    >
+                      {trait}
+                    </span>
+                  ))}
+                </div>
+                <div className="text-academic-blue font-medium group-hover:text-blue-700 transition-colors">
+                  Begin Assessment →
+                </div>
               </div>
-              <Button
-                className={`w-full py-3 rounded-xl font-medium transition-colors duration-200 ${getCharacterButtonClass(character)}`}
-              >
-                Select Character
-              </Button>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-8">
-          <p className="text-white/80 text-sm md:text-base mb-4">
-            Each character offers unique perspectives and decision-making approaches
+        <div className="text-center mt-12">
+          <p className="text-gray-500 text-sm">
+            Based on radical collaboration principles for online learning environments
           </p>
-          <Button
-            variant="ghost"
-            className="bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm px-6 py-3 rounded-xl font-medium"
-          >
-            <HelpCircle className="w-4 h-4 mr-2" />
-            Learn More About Characters
-          </Button>
         </div>
       </div>
     </div>

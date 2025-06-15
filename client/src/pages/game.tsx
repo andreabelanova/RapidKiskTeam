@@ -168,14 +168,14 @@ export default function Game() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-game-blue to-blue-600 overflow-hidden">
+    <div className="min-h-screen bg-academic-white">
       <GameHeader
         showBackButton={gameState === "playing"}
         onBackClick={handleBackClick}
         onMaterialsToggle={toggleMaterials}
       />
 
-      <main className="pt-20 h-screen overflow-hidden relative">
+      <main className="relative">
         <LandingScene
           characters={characters || []}
           onCharacterSelect={handleCharacterSelect}

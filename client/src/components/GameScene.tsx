@@ -37,41 +37,50 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
     }, 500);
   };
 
-  const themeClass = getNodeTheme(scenario.id);
-
   return (
-    <div className={`absolute inset-0 flex flex-col transition-all duration-500 ${themeClass}`}>
-      <FloatingIcons scenarioId={scenario.id} />
-      <div className="flex-1 flex items-center justify-center p-4">
-        <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 max-w-4xl w-full shadow-2xl">
-          <div className="text-center mb-6">
-            <h3 className="text-2xl md:text-3xl font-bold text-game-dark mb-4">
+    <div className="bg-academic-white min-h-screen">
+      <div className="academic-container py-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center academic-spacing">
+            <h2 className="text-2xl font-light academic-text mb-4">
               {scenario.title}
-            </h3>
-            <p className="text-game-dark/80 text-lg">
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
               {scenario.description}
             </p>
           </div>
           
-          <div className="space-y-4">
-            {decisions.map((decision) => (
-              <Button
+          <div className="space-y-6">
+            {decisions.map((decision, index) => (
+              <div
                 key={decision.id}
                 data-decision={decision.id}
                 onClick={() => handleDecisionClick(decision)}
-                variant="ghost"
-                className="w-full text-left p-4 bg-white/80 hover:bg-game-yellow/30 rounded-xl transition-all duration-300 border-2 border-transparent hover:border-game-yellow h-auto hover:shadow-lg hover:scale-[1.02] backdrop-blur-sm"
+                className="academic-card cursor-pointer group"
               >
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-game-blue rounded-full flex items-center justify-center text-white text-lg font-bold flex-shrink-0 mt-1 hover:scale-110 transition-transform duration-200">
-                    {decision.letter}
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-10 h-10 bg-academic-blue/10 rounded-lg flex items-center justify-center">
+                      <span className="text-academic-blue font-medium">
+                        {decision.letter}
+                      </span>
+                    </div>
                   </div>
-                  <div className="text-left">
-                    <p className="font-medium text-game-dark group-hover:text-game-dark transition-colors duration-200">{decision.title}</p>
-                    <p className="text-sm text-game-dark/70 mt-1 group-hover:text-game-dark/80 transition-colors duration-200">{decision.description}</p>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-medium academic-text mb-2 group-hover:text-academic-blue transition-colors">
+                      {decision.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {decision.description}
+                    </p>
+                  </div>
+                  <div className="flex-shrink-0">
+                    <span className="text-academic-blue opacity-0 group-hover:opacity-100 transition-opacity">
+                      →
+                    </span>
                   </div>
                 </div>
-              </Button>
+              </div>
             ))}
           </div>
         </div>

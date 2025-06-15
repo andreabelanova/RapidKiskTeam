@@ -24,17 +24,14 @@
   --ring: hsl(20, 14.3%, 4.1%);
   --radius: 0.5rem;
   
-  /* Game Colors */
-  --game-yellow: hsl(51, 100%, 50%);
-  --game-blue: hsl(207, 90%, 54%);
-  --game-dark: hsl(210, 11%, 15%);
-  --game-light: hsl(210, 17%, 98%);
-  
-  /* Node Type Colors */
-  --node-start: hsl(207, 90%, 54%);
-  --node-problem: hsl(15, 85%, 55%);
-  --node-solution: hsl(142, 76%, 36%);
-  --node-success: hsl(84, 81%, 44%);
+  /* Academic Colors - 100metod inspired */
+  --academic-blue: hsl(207, 90%, 54%);
+  --academic-yellow: hsl(51, 100%, 50%);
+  --academic-dark: hsl(210, 15%, 25%);
+  --academic-light: hsl(0, 0%, 98%);
+  --academic-white: hsl(0, 0%, 100%);
+  --academic-gray: hsl(210, 10%, 85%);
+  --academic-text: hsl(210, 15%, 20%);
 }
 
 .dark {
@@ -66,42 +63,60 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    @apply font-sans antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--academic-white);
+    color: var(--academic-text);
+    line-height: 1.6;
   }
 }
 
 @layer utilities {
-  .game-yellow {
-    color: var(--game-yellow);
+  .academic-blue {
+    color: var(--academic-blue);
   }
   
-  .bg-game-yellow {
-    background-color: var(--game-yellow);
+  .bg-academic-blue {
+    background-color: var(--academic-blue);
   }
   
-  .game-blue {
-    color: var(--game-blue);
+  .academic-yellow {
+    color: var(--academic-yellow);
   }
   
-  .bg-game-blue {
-    background-color: var(--game-blue);
+  .bg-academic-yellow {
+    background-color: var(--academic-yellow);
   }
   
-  .game-dark {
-    color: var(--game-dark);
+  .academic-text {
+    color: var(--academic-text);
   }
   
-  .bg-game-dark {
-    background-color: var(--game-dark);
+  .bg-academic-white {
+    background-color: var(--academic-white);
   }
   
-  .game-light {
-    color: var(--game-light);
+  .academic-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
   }
   
-  .bg-game-light {
-    background-color: var(--game-light);
+  .academic-spacing {
+    margin-bottom: 40px;
+  }
+  
+  .academic-card {
+    background: var(--academic-white);
+    border: 1px solid var(--academic-gray);
+    border-radius: 8px;
+    padding: 32px;
+    transition: all 0.2s ease;
+  }
+  
+  .academic-card:hover {
+    border-color: var(--academic-blue);
+    box-shadow: 0 4px 12px rgba(30, 136, 229, 0.1);
   }
 }
 

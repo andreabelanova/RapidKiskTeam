@@ -458,6 +458,101 @@ export class MemStorage implements IStorage {
           "1": "continue_project"
         },
         learningObjectives: ["Structured collaboration", "Online facilitation"]
+      },
+
+      // Additional missing scenarios
+      {
+        id: "team_break",
+        title: "Team Breakdown",
+        description: "Major conflicts and relationship breakdowns are threatening the team's ability to work together effectively.",
+        characterId: "have_team",
+        decisions: [
+          {
+            id: "1",
+            letter: "🔍",
+            title: "Facilitate conflict resolution session",
+            description: "Address underlying issues through structured discussion",
+            nextScenario: "continue_project"
+          },
+          {
+            id: "2",
+            letter: "⚠️",
+            title: "Seek external mediation",
+            description: "Bring in instructor or neutral party to help resolve conflicts",
+            nextScenario: "seek_help"
+          }
+        ],
+        nextScenarios: {
+          "1": "continue_project",
+          "2": "seek_help"
+        },
+        learningObjectives: ["Conflict resolution", "Team repair", "Mediation"]
+      },
+
+      {
+        id: "seek_help",
+        title: "External Support Required",
+        description: "Team needs external help – contact instructor or mentor for next steps. 🆘",
+        characterId: null,
+        decisions: [],
+        nextScenarios: {},
+        learningObjectives: ["Knowing when to seek help", "Resource identification"]
+      },
+
+      {
+        id: "low_motivation",
+        title: "Low Team Motivation",
+        description: "Team members seem disengaged and unmotivated. How do you re-energize the group?",
+        characterId: "have_team",
+        decisions: [
+          {
+            id: "1",
+            letter: "🎯",
+            title: "Reconnect with project purpose",
+            description: "Remind team of project goals and individual contributions",
+            nextScenario: "continue_project"
+          },
+          {
+            id: "2",
+            letter: "🏃",
+            title: "Introduce energizing activities",
+            description: "Add team-building exercises or change working methods",
+            nextScenario: "continue_project"
+          }
+        ],
+        nextScenarios: {
+          "1": "continue_project",
+          "2": "continue_project"
+        },
+        learningObjectives: ["Motivation techniques", "Team engagement"]
+      },
+
+      {
+        id: "find_respondents",
+        title: "Finding Research Participants",
+        description: "Team can't find respondents for research. What's your strategy?",
+        characterId: "have_team",
+        decisions: [
+          {
+            id: "1",
+            letter: "🔍",
+            title: "Reach out to networks",
+            description: "Use personal and alumni networks via LinkedIn/Teams",
+            nextScenario: "continue_project"
+          },
+          {
+            id: "2",
+            letter: "🛠",
+            title: "Use recruiting platforms",
+            description: "Try UserTesting, Useberry or similar services",
+            nextScenario: "continue_project"
+          }
+        ],
+        nextScenarios: {
+          "1": "continue_project",
+          "2": "continue_project"
+        },
+        learningObjectives: ["Research recruitment", "Network utilization"]
       }
     ];
 

@@ -1,0 +1,64 @@
+# Visual Redesign Prompt Based on 100metod Style
+
+```
+I need to completely redesign the visual style based on this reference: https://kisk.phil.muni.cz/100metod
+
+## Target Visual Style (100metod inspired)
+- CLEAN minimalist design with lots of white space
+- Simple typography - clean sans-serif fonts
+- Subtle colors: mainly white background with blue #1E88E5 and yellow #FFD400 accents
+- No fancy gradients or heavy graphics
+- Text-focused with simple visual hierarchy
+- Professional academic look, not game-like
+
+## Layout Requirements
+1. **Clean grid system** like 100metod:
+   - Large white background
+   - Generous spacing between all elements (40px+)
+   - Simple text-based navigation
+   - Minimal visual clutter
+
+2. **Choice cards should be simple text blocks**:
+   - White background with subtle border
+   - Large readable text (18px+)
+   - Hover effects: light blue/yellow highlight
+   - No complex illustrations inside cards
+   - Focus on clear, descriptive text
+
+3. **Header area**:
+   - Clean title "RapidKISK Team" 
+   - Subtitle explaining the purpose
+   - Simple back navigation (just text link, not button)
+
+## Character Illustrations (if any)
+- Remove complex character cards
+- Use simple abstract icons or shapes
+- Minimal flat design elements
+- Professional academic style, not cartoon-like
+- Icons should be subtle, secondary to text content
+
+## Color & Typography
+- PRIMARY: Clean white background
+- ACCENTS: Blue #1E88E5 for interactive elements
+- SECONDARY: Yellow #FFD400 for highlights only
+- Typography: Clean, readable sans-serif
+- Larger font sizes for better readability
+- Proper text hierarchy with clear contrast
+
+## Overall Transformation - "Academic Game"
+Transform to an elegant "academic game" that combines engagement with sophistication:
+- Keep interactive game elements but make them refined
+- Maintain scenario-based navigation but cleaner
+- Educational tool that feels engaging, not dry
+- Sophisticated visual storytelling for adult learners
+- Balance between serious academic content and interactive engagement
+
+## Refined Game Elements
+- Keep character selection but make it more sophisticated
+- Elegant hover animations (subtle, not bouncy)
+- Clean progress indication through the scenarios
+- Refined color-coded themes for different situation types
+- Professional illustrations that support learning objectives
+
+Please redesign as a sophisticated "academic game" - engaging but refined, educational but interactive.
+```

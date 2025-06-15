@@ -103,26 +103,19 @@ export function MaterialsPanel({ isOpen, onClose }: MaterialsPanelProps) {
   return (
     <>
       <div 
-        className={`materials-panel fixed top-0 right-0 w-full md:w-96 h-full bg-white/90 backdrop-blur-xl shadow-2xl z-40 overflow-y-auto border-l border-white/20 ${
+        className={`materials-panel fixed top-0 right-0 w-full md:w-96 h-full bg-academic-white shadow-lg z-40 overflow-y-auto border-l border-academic-gray ${
           isOpen ? 'open' : ''
         }`}
-        style={{
-          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 248, 255, 0.9) 100%)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
-        }}
       >
-        <div className="p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-bold text-game-dark">Learning Materials</h3>
-            <Button
-              variant="ghost"
-              size="sm"
+        <div className="p-8">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-xl font-light academic-text">Learning Materials</h3>
+            <button
               onClick={onClose}
-              className="text-game-dark/60 hover:text-game-dark"
+              className="text-gray-500 hover:text-academic-text transition-colors"
             >
               <X className="w-5 h-5" />
-            </Button>
+            </button>
           </div>
           
           {isLoading ? (
@@ -139,18 +132,17 @@ export function MaterialsPanel({ isOpen, onClose }: MaterialsPanelProps) {
               {materials?.map((material) => (
                 <div 
                   key={material.id} 
-                  className={`rounded-xl p-4 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 ${getColorClasses(material.color)}`}
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
-                  }}
+                  className="border border-academic-gray rounded-lg p-6 hover:border-academic-blue transition-colors"
                 >
-                  <h4 className="font-semibold text-game-dark mb-2 flex items-center">
-                    <span className={getColorClasses(material.color).split(' ')[1]}>
+                  <h4 className="font-medium academic-text mb-3 flex items-center">
+                    <span className="text-academic-blue mr-3">
                       {getIcon(material.icon)}
                     </span>
-                    <span className="ml-2">{material.title}</span>
+                    <span>{material.title}</span>
                   </h4>
-                  {renderMaterialContent(material)}
+                  <div className="text-gray-600">
+                    {renderMaterialContent(material)}
+                  </div>
                 </div>
               ))}
             </div>
