@@ -81,27 +81,38 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
               </div>
             </div>
             
-            {/* Enhanced decision buttons for end states */}
-            <div className="grid gap-6 max-w-2xl mx-auto">
+            {/* Decision buttons with consistent styling */}
+            <div className="space-y-6 max-w-3xl mx-auto">
               {decisions.map((decision) => (
-                <button
+                <div
                   key={decision.id}
                   data-decision={decision.id}
                   onClick={() => handleDecisionClick(decision)}
-                  className="academic-card p-8 cursor-pointer group hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-academic-blue/20"
+                  className="academic-card cursor-pointer group"
                 >
-                  <div className="text-center">
-                    <div className="text-4xl mb-4">
-                      {decision.letter}
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-10 h-10 bg-academic-blue/10 rounded-lg flex items-center justify-center">
+                        <span className="text-academic-blue font-medium">
+                          {decision.letter}
+                        </span>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-medium academic-text mb-3 group-hover:text-academic-blue transition-colors">
-                      {decision.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {decision.description}
-                    </p>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-medium academic-text mb-2 group-hover:text-academic-blue transition-colors">
+                        {decision.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {decision.description}
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0">
+                      <span className="text-academic-blue opacity-0 group-hover:opacity-100 transition-opacity">
+                        →
+                      </span>
+                    </div>
                   </div>
-                </button>
+                </div>
               ))}
             </div>
           </div>
