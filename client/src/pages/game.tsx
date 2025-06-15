@@ -199,6 +199,7 @@ export default function Game() {
           <GameScene
             scenario={currentScenario}
             onDecisionSelect={handleDecisionSelect}
+            onMaterialsToggle={() => setMaterialsOpen(true)}
             isVisible={gameState === "playing"}
           />
         )}

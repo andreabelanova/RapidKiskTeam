@@ -36,10 +36,11 @@ const getScenarioIllustrationType = (scenarioId: string):
 interface GameSceneProps {
   scenario: Scenario;
   onDecisionSelect: (decision: Decision) => void;
+  onMaterialsToggle: () => void;
   isVisible: boolean;
 }
 
-export function GameScene({ scenario, onDecisionSelect, isVisible }: GameSceneProps) {
+export function GameScene({ scenario, onDecisionSelect, onMaterialsToggle, isVisible }: GameSceneProps) {
   if (!isVisible) return null;
 
   const decisions = scenario.decisions as Decision[];
@@ -53,6 +54,14 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
 
   const handleDecisionClick = (decision: Decision) => {
     setSelectedDecisionId(decision.id);
+    
+    // Special handling for "Browse challenge library" button
+    if (decision.title === "Browse challenge library") {
+      setTimeout(() => {
+        onMaterialsToggle(); // Open materials panel instead of navigating
+      }, 1000);
+      return;
+    }
     
     setTimeout(() => {
       onDecisionSelect(decision);
