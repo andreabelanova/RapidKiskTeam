@@ -2,7 +2,7 @@ import { Scenario, Decision } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { FloatingIcons } from "./FloatingIcons";
 import { CharacterIllustration } from "./CharacterIllustrations";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const getNodeTheme = (scenarioId: string) => {
   if (scenarioId === "start") return "bg-gradient-to-br from-blue-500 to-blue-600";
@@ -45,6 +45,11 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
   const decisions = scenario.decisions as Decision[];
   const isEndState = ['continue_project', 'seek_help', 'project_cancelled', 'happy_student'].includes(scenario.id);
   const [selectedDecisionId, setSelectedDecisionId] = useState<string | null>(null);
+
+  // Reset selection when scenario changes
+  useEffect(() => {
+    setSelectedDecisionId(null);
+  }, [scenario.id]);
 
   const handleDecisionClick = (decision: Decision) => {
     setSelectedDecisionId(decision.id);
