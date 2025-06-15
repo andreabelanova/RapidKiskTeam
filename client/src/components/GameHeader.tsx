@@ -9,27 +9,29 @@ interface GameHeaderProps {
 
 export function GameHeader({ showBackButton, onBackClick, onMaterialsToggle }: GameHeaderProps) {
   return (
-    <header className="bg-academic-white border-b border-academic-gray">
+    <header className="bg-white border-b border-academic-gray shadow-sm">
       <div className="academic-container">
-        <div className="flex items-center justify-between py-6">
-          <div className="flex items-center space-x-6">
+        <div className="flex items-center justify-between py-8">
+          <div className="flex items-center space-x-8">
             {showBackButton && (
               <button
                 onClick={onBackClick}
-                className="text-academic-blue hover:text-blue-700 text-sm font-medium transition-colors"
+                className="flex items-center text-academic-blue hover:text-academic-blue-dark text-base font-semibold transition-colors"
               >
-                ← Back
+                <ArrowLeft className="w-5 h-5 mr-2" />
+                Back
               </button>
             )}
             <div>
-              <h1 className="text-2xl font-light academic-text">RapidKISK Team</h1>
-              <p className="text-sm text-gray-600 mt-1">Interactive Decision Support for Team Collaboration</p>
+              <h1 className="text-3xl font-bold academic-text">RapidKISK Team</h1>
+              <p className="text-base text-academic-text-light mt-2">Interactive Decision Support for Team Collaboration</p>
             </div>
           </div>
           <button
             onClick={onMaterialsToggle}
-            className="text-academic-blue hover:text-blue-700 text-sm font-medium transition-colors"
+            className="flex items-center bg-academic-blue text-white px-6 py-3 rounded-lg hover:bg-academic-blue-dark text-base font-semibold transition-colors shadow-md"
           >
+            <Book className="w-5 h-5 mr-2" />
             Learning Materials
           </button>
         </div>

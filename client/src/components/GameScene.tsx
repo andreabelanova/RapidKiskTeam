@@ -64,25 +64,27 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
     }, 500);
   };
 
-  // Enhanced end-state layout
+  // Enhanced end-state layout with 100metod styling
   if (isEndState) {
     return (
-      <div className="bg-academic-white min-h-screen">
-        <div className="academic-container py-16">
-          <div className="max-w-5xl mx-auto">
-            {/* Large centered illustration */}
-            <div className="text-center mb-12">
-              <CharacterIllustration 
-                type={getScenarioIllustrationType(scenario.id)} 
-                className="w-96 h-72 mx-auto object-contain drop-shadow-lg mb-8"
-              />
+      <div className="bg-academic-light min-h-screen">
+        <div className="academic-container py-20">
+          <div className="max-w-6xl mx-auto">
+            {/* Large centered illustration with 100metod styling */}
+            <div className="text-center mb-16">
+              <div className="bg-white rounded-2xl p-12 mb-12 shadow-lg">
+                <CharacterIllustration 
+                  type={getScenarioIllustrationType(scenario.id)} 
+                  className="w-96 h-72 mx-auto object-contain mb-8"
+                />
+              </div>
               
-              {/* Enhanced title and description */}
-              <div className="max-w-3xl mx-auto">
-                <h1 className="text-4xl font-light academic-text mb-6">
+              {/* Enhanced title and description with 100metod typography */}
+              <div className="max-w-4xl mx-auto">
+                <h1 className="text-5xl font-bold academic-text mb-8 leading-tight">
                   {scenario.title}
                 </h1>
-                <p className="text-xl text-gray-700 leading-relaxed mb-8">
+                <p className="text-2xl text-academic-text-light leading-relaxed mb-12">
                   {scenario.description}
                 </p>
               </div>
@@ -128,24 +130,26 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
     );
   }
 
-  // Regular scenario layout
+  // Regular scenario layout with 100metod styling
   return (
-    <div className="bg-academic-white min-h-screen">
-      <div className="academic-container py-16">
-        <div className="max-w-4xl mx-auto">
+    <div className="bg-academic-light min-h-screen">
+      <div className="academic-container py-20">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center academic-spacing">
-            <div className="flex items-center justify-center mb-6">
-              <CharacterIllustration 
-                type={getScenarioIllustrationType(scenario.id)} 
-                className="w-32 h-24 drop-shadow-sm mr-6"
-              />
-              <div className="text-left">
-                <h2 className="text-2xl font-light academic-text mb-4">
-                  {scenario.title}
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
-                  {scenario.description}
-                </p>
+            <div className="bg-white rounded-2xl p-12 mb-12 shadow-lg">
+              <div className="flex items-center justify-center mb-8">
+                <CharacterIllustration 
+                  type={getScenarioIllustrationType(scenario.id)} 
+                  className="w-40 h-32 drop-shadow-sm mr-8"
+                />
+                <div className="text-left">
+                  <h1 className="text-3xl font-bold academic-text mb-6 leading-tight">
+                    {scenario.title}
+                  </h1>
+                  <p className="text-xl text-academic-text-light leading-relaxed max-w-3xl">
+                    {scenario.description}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

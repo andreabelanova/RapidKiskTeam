@@ -96,19 +96,19 @@ export function LandingScene({ characters, onCharacterSelect, isVisible }: Landi
                   </p>
                   
                   {/* Chips with 100metod styling */}
-                  <div className="flex flex-wrap gap-3 mb-6">
+                  <div className="flex flex-wrap gap-3 mb-8">
                     {character.traits.map((trait) => (
                       <span
                         key={trait}
-                        className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
+                        className="px-4 py-2 bg-academic-blue-light text-academic-blue text-sm rounded-full font-medium"
                       >
                         {trait}
                       </span>
                     ))}
                   </div>
                   
-                  {/* Call to action */}
-                  <div className="text-academic-blue text-sm font-medium group-hover:text-blue-700 transition-colors">
+                  {/* Call to action with 100metod styling */}
+                  <div className="text-academic-blue text-base font-semibold group-hover:text-academic-blue-dark transition-colors">
                     Begin Assessment →
                   </div>
                 </div>
