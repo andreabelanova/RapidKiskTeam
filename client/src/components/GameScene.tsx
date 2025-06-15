@@ -14,11 +14,19 @@ const getNodeTheme = (scenarioId: string) => {
   return "bg-gradient-to-br from-blue-500 to-indigo-500";
 };
 
-const getScenarioIllustrationType = (scenarioId: string): 'have_team' | 'no_team' | 'no_topic' | 'dominant_member' | 'decision_conflict' | 'communication' | 'success' => {
+const getScenarioIllustrationType = (scenarioId: string): 
+  'have_team' | 'no_team' | 'no_topic' | 'dominant_member' | 'decision_conflict' | 'communication' | 'success' | 'continue_project' | 'seek_help' | 'project_cancelled' | 'happy_student' => {
+  // End-state scenarios with custom illustrations
+  if (scenarioId === "continue_project") return "continue_project";
+  if (scenarioId === "seek_help") return "seek_help";
+  if (scenarioId === "project_cancelled") return "project_cancelled";
+  if (scenarioId === "happy_student") return "happy_student";
+  
+  // Regular scenarios
   if (scenarioId.includes("dominant")) return "dominant_member";
   if (scenarioId.includes("conflict")) return "decision_conflict";
   if (scenarioId.includes("communication") || scenarioId.includes("talk")) return "communication";
-  if (scenarioId.includes("success") || scenarioId.includes("happy")) return "success";
+  if (scenarioId.includes("success")) return "success";
   if (scenarioId.includes("no_team") || scenarioId.includes("looking")) return "no_team";
   if (scenarioId.includes("no_topic") || scenarioId.includes("topic")) return "no_topic";
   return "have_team";
@@ -34,6 +42,7 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
   if (!isVisible) return null;
 
   const decisions = scenario.decisions as Decision[];
+  const isEndState = ['continue_project', 'seek_help', 'project_cancelled', 'happy_student'].includes(scenario.id);
 
   const handleDecisionClick = (decision: Decision) => {
     // Add visual feedback
@@ -48,6 +57,60 @@ export function GameScene({ scenario, onDecisionSelect, isVisible }: GameScenePr
     }, 500);
   };
 
+  // Enhanced end-state layout
+  if (isEndState) {
+    return (
+      <div className="bg-academic-white min-h-screen">
+        <div className="academic-container py-16">
+          <div className="max-w-5xl mx-auto">
+            {/* Large centered illustration */}
+            <div className="text-center mb-12">
+              <CharacterIllustration 
+                type={getScenarioIllustrationType(scenario.id)} 
+                className="w-96 h-72 mx-auto object-contain drop-shadow-lg mb-8"
+              />
+              
+              {/* Enhanced title and description */}
+              <div className="max-w-3xl mx-auto">
+                <h1 className="text-4xl font-light academic-text mb-6">
+                  {scenario.title}
+                </h1>
+                <p className="text-xl text-gray-700 leading-relaxed mb-8">
+                  {scenario.description}
+                </p>
+              </div>
+            </div>
+            
+            {/* Enhanced decision buttons for end states */}
+            <div className="grid gap-6 max-w-2xl mx-auto">
+              {decisions.map((decision) => (
+                <button
+                  key={decision.id}
+                  data-decision={decision.id}
+                  onClick={() => handleDecisionClick(decision)}
+                  className="academic-card p-8 cursor-pointer group hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-academic-blue/20"
+                >
+                  <div className="text-center">
+                    <div className="text-4xl mb-4">
+                      {decision.letter}
+                    </div>
+                    <h3 className="text-xl font-medium academic-text mb-3 group-hover:text-academic-blue transition-colors">
+                      {decision.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {decision.description}
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Regular scenario layout
   return (
     <div className="bg-academic-white min-h-screen">
       <div className="academic-container py-16">
