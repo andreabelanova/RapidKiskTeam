@@ -1,0 +1,194 @@
+2025-06-18T19:14:51.0724971Z Current runner version: '2.325.0'
+2025-06-18T19:14:51.0760634Z ##[group]Operating System
+2025-06-18T19:14:51.0761898Z Ubuntu
+2025-06-18T19:14:51.0762880Z 24.04.2
+2025-06-18T19:14:51.0763688Z LTS
+2025-06-18T19:14:51.0764450Z ##[endgroup]
+2025-06-18T19:14:51.0765514Z ##[group]Runner Image
+2025-06-18T19:14:51.0766465Z Image: ubuntu-24.04
+2025-06-18T19:14:51.0767286Z Version: 20250615.1.0
+2025-06-18T19:14:51.0769238Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20250615.1/images/ubuntu/Ubuntu2404-Readme.md
+2025-06-18T19:14:51.0771734Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20250615.1
+2025-06-18T19:14:51.0773573Z ##[endgroup]
+2025-06-18T19:14:51.0774490Z ##[group]Runner Image Provisioner
+2025-06-18T19:14:51.0775460Z 2.0.437.1
+2025-06-18T19:14:51.0776140Z ##[endgroup]
+2025-06-18T19:14:51.0777958Z ##[group]GITHUB_TOKEN Permissions
+2025-06-18T19:14:51.0780408Z Contents: read
+2025-06-18T19:14:51.0781331Z Metadata: read
+2025-06-18T19:14:51.0782571Z Packages: read
+2025-06-18T19:14:51.0783511Z ##[endgroup]
+2025-06-18T19:14:51.0786333Z Secret source: Actions
+2025-06-18T19:14:51.0787340Z Prepare workflow directory
+2025-06-18T19:14:51.1222433Z Prepare all required actions
+2025-06-18T19:14:51.1259573Z Getting action download info
+2025-06-18T19:14:51.4770431Z ##[group]Download immutable action package 'actions/checkout@v4'
+2025-06-18T19:14:51.4771524Z Version: 4.2.2
+2025-06-18T19:14:51.4772745Z Digest: sha256:ccb2698953eaebd21c7bf6268a94f9c26518a7e38e27e0b83c1fe1ad049819b1
+2025-06-18T19:14:51.4773978Z Source commit SHA: 11bd71901bbe5b1630ceea73d27597364c9af683
+2025-06-18T19:14:51.4774695Z ##[endgroup]
+2025-06-18T19:14:51.5593454Z ##[group]Download immutable action package 'actions/setup-node@v4'
+2025-06-18T19:14:51.5594739Z Version: 4.4.0
+2025-06-18T19:14:51.5595964Z Digest: sha256:9427cefe82346e992fb5b949e3569b39d537ae41aa3086483b14eceebfc16bc1
+2025-06-18T19:14:51.5597727Z Source commit SHA: 49933ea5288caeca8642d1e84afbd3f7d6820020
+2025-06-18T19:14:51.5598905Z ##[endgroup]
+2025-06-18T19:14:51.7281737Z Complete job name: build-and-deploy
+2025-06-18T19:14:51.7984274Z ##[group]Run actions/checkout@v4
+2025-06-18T19:14:51.7985075Z with:
+2025-06-18T19:14:51.7985617Z   token: ***
+2025-06-18T19:14:51.7986074Z   repository: andreabelanova/rapidkisk-team-game
+2025-06-18T19:14:51.7986690Z   ssh-strict: true
+2025-06-18T19:14:51.7987069Z   ssh-user: git
+2025-06-18T19:14:51.7987457Z   persist-credentials: true
+2025-06-18T19:14:51.7987888Z   clean: true
+2025-06-18T19:14:51.7988274Z   sparse-checkout-cone-mode: true
+2025-06-18T19:14:51.7988747Z   fetch-depth: 1
+2025-06-18T19:14:51.7989115Z   fetch-tags: false
+2025-06-18T19:14:51.7989497Z   show-progress: true
+2025-06-18T19:14:51.7989885Z   lfs: false
+2025-06-18T19:14:51.7990252Z   submodules: false
+2025-06-18T19:14:51.7990639Z   set-safe-directory: true
+2025-06-18T19:14:51.7991298Z ##[endgroup]
+2025-06-18T19:14:51.9750488Z Syncing repository: andreabelanova/rapidkisk-team-game
+2025-06-18T19:14:51.9752550Z ##[group]Getting Git version info
+2025-06-18T19:14:51.9753463Z Working directory is '/home/runner/work/rapidkisk-team-game/rapidkisk-team-game'
+2025-06-18T19:14:51.9754529Z [command]/usr/bin/git version
+2025-06-18T19:14:51.9800354Z git version 2.49.0
+2025-06-18T19:14:51.9827620Z ##[endgroup]
+2025-06-18T19:14:51.9847460Z Temporarily overriding HOME='/home/runner/work/_temp/4fcb64ac-fa5a-4bed-9a14-55445e527c15' before making global git config changes
+2025-06-18T19:14:51.9848802Z Adding repository directory to the temporary git global config as a safe directory
+2025-06-18T19:14:51.9853059Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/rapidkisk-team-game/rapidkisk-team-game
+2025-06-18T19:14:51.9886708Z Deleting the contents of '/home/runner/work/rapidkisk-team-game/rapidkisk-team-game'
+2025-06-18T19:14:51.9890146Z ##[group]Initializing the repository
+2025-06-18T19:14:51.9894826Z [command]/usr/bin/git init /home/runner/work/rapidkisk-team-game/rapidkisk-team-game
+2025-06-18T19:14:51.9959908Z hint: Using 'master' as the name for the initial branch. This default branch name
+2025-06-18T19:14:51.9961218Z hint: is subject to change. To configure the initial branch name to use in all
+2025-06-18T19:14:51.9962933Z hint: of your new repositories, which will suppress this warning, call:
+2025-06-18T19:14:51.9964075Z hint:
+2025-06-18T19:14:51.9964821Z hint: 	git config --global init.defaultBranch <name>
+2025-06-18T19:14:51.9965736Z hint:
+2025-06-18T19:14:51.9966631Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2025-06-18T19:14:51.9967592Z hint: 'development'. The just-created branch can be renamed via this command:
+2025-06-18T19:14:51.9968290Z hint:
+2025-06-18T19:14:51.9968652Z hint: 	git branch -m <name>
+2025-06-18T19:14:51.9969509Z Initialized empty Git repository in /home/runner/work/rapidkisk-team-game/rapidkisk-team-game/.git/
+2025-06-18T19:14:51.9976767Z [command]/usr/bin/git remote add origin https://github.com/andreabelanova/rapidkisk-team-game
+2025-06-18T19:14:52.0010605Z ##[endgroup]
+2025-06-18T19:14:52.0011325Z ##[group]Disabling automatic garbage collection
+2025-06-18T19:14:52.0014881Z [command]/usr/bin/git config --local gc.auto 0
+2025-06-18T19:14:52.0044185Z ##[endgroup]
+2025-06-18T19:14:52.0045085Z ##[group]Setting up auth
+2025-06-18T19:14:52.0051219Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-06-18T19:14:52.0082273Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-06-18T19:14:52.0359648Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-06-18T19:14:52.0388465Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-06-18T19:14:52.0630396Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2025-06-18T19:14:52.0674038Z ##[endgroup]
+2025-06-18T19:14:52.0681999Z ##[group]Fetching the repository
+2025-06-18T19:14:52.0684487Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +dde6d5001e805a559d7b6cc95b45ebbc3f2b6734:refs/remotes/origin/main
+2025-06-18T19:14:52.8007049Z From https://github.com/andreabelanova/rapidkisk-team-game
+2025-06-18T19:14:52.8008797Z  * [new ref]         dde6d5001e805a559d7b6cc95b45ebbc3f2b6734 -> origin/main
+2025-06-18T19:14:52.8035096Z ##[endgroup]
+2025-06-18T19:14:52.8036409Z ##[group]Determining the checkout info
+2025-06-18T19:14:52.8037938Z ##[endgroup]
+2025-06-18T19:14:52.8043674Z [command]/usr/bin/git sparse-checkout disable
+2025-06-18T19:14:52.8083051Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2025-06-18T19:14:52.8112529Z ##[group]Checking out the ref
+2025-06-18T19:14:52.8115658Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2025-06-18T19:14:52.8206424Z Switched to a new branch 'main'
+2025-06-18T19:14:52.8208652Z branch 'main' set up to track 'origin/main'.
+2025-06-18T19:14:52.8214763Z ##[endgroup]
+2025-06-18T19:14:52.8248688Z [command]/usr/bin/git log -1 --format=%H
+2025-06-18T19:14:52.8269936Z dde6d5001e805a559d7b6cc95b45ebbc3f2b6734
+2025-06-18T19:14:52.8529586Z ##[group]Run actions/setup-node@v4
+2025-06-18T19:14:52.8530327Z with:
+2025-06-18T19:14:52.8530725Z   node-version: 20
+2025-06-18T19:14:52.8531210Z   always-auth: false
+2025-06-18T19:14:52.8531728Z   check-latest: false
+2025-06-18T19:14:52.8532743Z   token: ***
+2025-06-18T19:14:52.8533178Z ##[endgroup]
+2025-06-18T19:14:53.0275196Z Found in cache @ /opt/hostedtoolcache/node/20.19.2/x64
+2025-06-18T19:14:53.0280810Z ##[group]Environment details
+2025-06-18T19:14:53.3564925Z node: v20.19.2
+2025-06-18T19:14:53.3565822Z npm: 10.8.2
+2025-06-18T19:14:53.3566601Z yarn: 1.22.22
+2025-06-18T19:14:53.3568341Z ##[endgroup]
+2025-06-18T19:14:53.3679647Z ##[group]Run npm install
+2025-06-18T19:14:53.3680621Z [36;1mnpm install[0m
+2025-06-18T19:14:53.3774705Z shell: /usr/bin/bash -e {0}
+2025-06-18T19:14:53.3775660Z ##[endgroup]
+2025-06-18T19:15:38.2900642Z npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+2025-06-18T19:15:38.3384100Z npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+2025-06-18T19:15:43.6304877Z 
+2025-06-18T19:15:43.6305587Z added 496 packages, and audited 497 packages in 50s
+2025-06-18T19:15:43.6306297Z 
+2025-06-18T19:15:43.6309977Z 66 packages are looking for funding
+2025-06-18T19:15:43.6311122Z   run `npm fund` for details
+2025-06-18T19:15:43.6602459Z 
+2025-06-18T19:15:43.6603036Z 5 moderate severity vulnerabilities
+2025-06-18T19:15:43.6603383Z 
+2025-06-18T19:15:43.6603784Z To address all issues (including breaking changes), run:
+2025-06-18T19:15:43.6604337Z   npm audit fix --force
+2025-06-18T19:15:43.6604572Z 
+2025-06-18T19:15:43.6604844Z Run `npm audit` for details.
+2025-06-18T19:15:43.6970325Z ##[group]Run npx vite build --config vite.config.static.ts
+2025-06-18T19:15:43.6970791Z [36;1mnpx vite build --config vite.config.static.ts[0m
+2025-06-18T19:15:43.7033683Z shell: /usr/bin/bash -e {0}
+2025-06-18T19:15:43.7033949Z ##[endgroup]
+2025-06-18T19:15:44.1996802Z [36mvite v5.4.19 [32mbuilding for production...[36m[39m
+2025-06-18T19:15:44.2483494Z transforming...
+2025-06-18T19:15:47.4369542Z [32m✓[39m 1675 modules transformed.
+2025-06-18T19:15:47.6079977Z rendering chunks...
+2025-06-18T19:15:47.6153066Z computing gzip size...
+2025-06-18T19:15:47.6268493Z [2m../dist/[22m[32mindex.html                                                      [39m[1m[2m  0.63 kB[22m[1m[22m[2m │ gzip:  0.38 kB[22m
+2025-06-18T19:15:47.6270567Z [2m../dist/[22m[2massets/[22m[32mI_do_not_have-team_1749988424194-CkSbgvE0.webp           [39m[1m[2m 17.21 kB[22m[1m[22m
+2025-06-18T19:15:47.6272790Z [2m../dist/[22m[2massets/[22m[32mproject canceled_1750009386119-CYqPE7H7.webp             [39m[1m[2m 33.92 kB[22m[1m[22m
+2025-06-18T19:15:47.6274159Z [2m../dist/[22m[2massets/[22m[32mI do not have project topic_1749988424193-BPbHaWrB.webp  [39m[1m[2m 35.82 kB[22m[1m[22m
+2025-06-18T19:15:47.6275836Z [2m../dist/[22m[2massets/[22m[32msuccesfull happy student_1750009386120-BVLJfQZ9.webp     [39m[1m[2m 37.69 kB[22m[1m[22m
+2025-06-18T19:15:47.6277425Z [2m../dist/[22m[2massets/[22m[32mi have team_1749988424193-yfeULgT2.webp                  [39m[1m[2m 49.82 kB[22m[1m[22m
+2025-06-18T19:15:47.6278992Z [2m../dist/[22m[2massets/[22m[32mcontinue project_1750009392222-jWQy_tqb.webp             [39m[1m[2m 50.42 kB[22m[1m[22m
+2025-06-18T19:15:47.6280542Z [2m../dist/[22m[2massets/[22m[32mseek_help_1750009386120-CYA_3ChQ.webp                    [39m[1m[2m 54.93 kB[22m[1m[22m
+2025-06-18T19:15:47.6282281Z [2m../dist/[22m[2massets/[22m[35mindex-X04VmNhy.css                                       [39m[1m[2m 65.42 kB[22m[1m[22m[2m │ gzip: 11.75 kB[22m
+2025-06-18T19:15:47.6283510Z [2m../dist/[22m[2massets/[22m[36mindex-C_9u0gsZ.js                                        [39m[1m[2m290.19 kB[22m[1m[22m[2m │ gzip: 93.26 kB[22m
+2025-06-18T19:15:47.6284050Z [32m✓ built in 3.40s[39m
+2025-06-18T19:15:47.6774869Z ##[group]Run rm -rf docs
+2025-06-18T19:15:47.6775154Z [36;1mrm -rf docs[0m
+2025-06-18T19:15:47.6775339Z [36;1mcp -r dist docs[0m
+2025-06-18T19:15:47.6834680Z shell: /usr/bin/bash -e {0}
+2025-06-18T19:15:47.6834916Z ##[endgroup]
+2025-06-18T19:15:47.7034611Z ##[group]Run git config --local user.email "action@github.com"
+2025-06-18T19:15:47.7035038Z [36;1mgit config --local user.email "action@github.com"[0m
+2025-06-18T19:15:47.7035367Z [36;1mgit config --local user.name "GitHub Actions"[0m
+2025-06-18T19:15:47.7035630Z [36;1mgit add docs/[0m
+2025-06-18T19:15:47.7035943Z [36;1mgit diff --staged --quiet || git commit -m "Deploy to GitHub Pages [skip ci]"[0m
+2025-06-18T19:15:47.7036306Z [36;1mgit push[0m
+2025-06-18T19:15:47.7093096Z shell: /usr/bin/bash -e {0}
+2025-06-18T19:15:47.7093321Z ##[endgroup]
+2025-06-18T19:15:47.7404814Z [main 8924c68] Deploy to GitHub Pages [skip ci]
+2025-06-18T19:15:47.7405218Z  10 files changed, 123 insertions(+)
+2025-06-18T19:15:47.7405674Z  create mode 100644 docs/assets/I do not have project topic_1749988424193-BPbHaWrB.webp
+2025-06-18T19:15:47.7406201Z  create mode 100644 docs/assets/I_do_not_have-team_1749988424194-CkSbgvE0.webp
+2025-06-18T19:15:47.7406739Z  create mode 100644 docs/assets/continue project_1750009392222-jWQy_tqb.webp
+2025-06-18T19:15:47.7407197Z  create mode 100644 docs/assets/i have team_1749988424193-yfeULgT2.webp
+2025-06-18T19:15:47.7407616Z  create mode 100644 docs/assets/index-C_9u0gsZ.js
+2025-06-18T19:15:47.7407946Z  create mode 100644 docs/assets/index-X04VmNhy.css
+2025-06-18T19:15:47.7408354Z  create mode 100644 docs/assets/project canceled_1750009386119-CYqPE7H7.webp
+2025-06-18T19:15:47.7408933Z  create mode 100644 docs/assets/seek_help_1750009386120-CYA_3ChQ.webp
+2025-06-18T19:15:47.7409530Z  create mode 100644 docs/assets/succesfull happy student_1750009386120-BVLJfQZ9.webp
+2025-06-18T19:15:47.7409941Z  create mode 100644 docs/index.html
+2025-06-18T19:15:47.9997829Z remote: Permission to andreabelanova/rapidkisk-team-game.git denied to github-actions[bot].
+2025-06-18T19:15:47.9998938Z fatal: unable to access 'https://github.com/andreabelanova/rapidkisk-team-game/': The requested URL returned error: 403
+2025-06-18T19:15:48.0029394Z ##[error]Process completed with exit code 128.
+2025-06-18T19:15:48.0123134Z Post job cleanup.
+2025-06-18T19:15:48.1055323Z [command]/usr/bin/git version
+2025-06-18T19:15:48.1095759Z git version 2.49.0
+2025-06-18T19:15:48.1142488Z Temporarily overriding HOME='/home/runner/work/_temp/8cb7044e-363d-49c1-89c5-58a726574e46' before making global git config changes
+2025-06-18T19:15:48.1143521Z Adding repository directory to the temporary git global config as a safe directory
+2025-06-18T19:15:48.1148069Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/rapidkisk-team-game/rapidkisk-team-game
+2025-06-18T19:15:48.1184118Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2025-06-18T19:15:48.1216583Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2025-06-18T19:15:48.1448032Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2025-06-18T19:15:48.1469481Z http.https://github.com/.extraheader
+2025-06-18T19:15:48.1482415Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2025-06-18T19:15:48.1513676Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2025-06-18T19:15:48.1840668Z Cleaning up orphan processes
