@@ -28,10 +28,13 @@ jobs:
       - name: Build static site
         run: npx vite build --config vite.config.static.ts
 
-      - name: Prepare docs folder
+      - name: Deploy to docs folder
         run: |
           rm -rf docs
-          cp -r dist docs
+          mkdir -p docs
+          cp -r dist/* docs/
+          # Copy 404.html for SPA routing
+          cp client/404.html docs/404.html
 
       - name: Commit and push
         run: |
