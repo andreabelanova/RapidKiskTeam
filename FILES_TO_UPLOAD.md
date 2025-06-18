@@ -1,50 +1,68 @@
-# Súbory na nahratie na GitHub
+# Súbory na nahratie do GitHub repozitára
 
-## Hlavné súbory (root)
-- `package.json`
-- `vite.config.ts`
-- `vite.config.static.ts`
-- `tsconfig.json`
-- `tailwind.config.ts`
-- `postcss.config.js`
-- `components.json`
-- `README.md`
-- `DEPLOYMENT_GUIDE.md`
+## Nahraďte existujúci `.github/workflows/deploy.yml` týmto obsahom:
 
-## Client priečinok (celý)
-- `client/index.html`
-- `client/src/` (všetky súbory a podpriečinky)
+```yaml
+name: Deploy to GitHub Pages
 
-## Server priečinok (celý)
-- `server/index.ts`
-- `server/routes.ts`
-- `server/storage.ts`
-- `server/vite.ts`
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
 
-## Shared priečinok
-- `shared/schema.ts`
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-## Attached assets (len potrebné obrázky)
-- `attached_assets/i have team_1749988424193.webp`
-- `attached_assets/I_do_not_have-team_1749988424194.webp`
-- `attached_assets/I do not have project topic_1749988424193.webp`
-- `attached_assets/continue project_1750009392222.webp`
-- `attached_assets/seek_help_1750009386120.webp`
-- `attached_assets/project canceled_1750009386119.webp`
-- `attached_assets/succesfull happy student_1750009386120.webp`
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
-## GitHub Actions
-- `.github/workflows/deploy.yml`
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-## Čo NENAHRÁVA:
-- `node_modules/` - automaticky sa ignoruje
-- `.replit` - špecifické pre Replit
-- `replit.nix` - špecifické pre Replit
-- Všetky ostatné súbory z `attached_assets/` (PDF, screenshoty, atď.)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
 
-## Postup uploadu:
-1. Na GitHub vytvorte nový repozitár
-2. Drag & drop všetky tieto súbory naraz
-3. Commit s názvom "Initial commit"
-4. V Settings → Pages nastavte Source na "GitHub Actions"
-5. Push spustí automatické nasadenie
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npx vite build --config vite.config.static.ts
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+## Potom v Settings → Pages zmeňte:
+- Source: **GitHub Actions** (namiesto "Deploy from a branch")
+
+## Spustite workflow:
+1. Actions tab → "Deploy to GitHub Pages" → "Run workflow"
+2. Počkajte 3-5 minút na dokončenie
+
+Aplikácia bude dostupná na: https://andreabelanova.github.io/rapidkisk-team-game/
