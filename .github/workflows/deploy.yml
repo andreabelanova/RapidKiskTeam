@@ -33,8 +33,24 @@ jobs:
           rm -rf docs
           mkdir -p docs
           cp -r dist/* docs/
-          # Copy 404.html for SPA routing
-          cp client/404.html docs/404.html
+          # Create 404.html for SPA routing
+          cat > docs/404.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>RapidKISK Team Game</title>
+            <script>
+              sessionStorage.redirect = location.href;
+            </script>
+            <meta http-equiv="refresh" content="0;URL='/rapidkisk-team-game/'">
+          </head>
+          <body>
+            Redirecting...
+          </body>
+          </html>
+          EOF
 
       - name: Commit and push
         run: |
@@ -42,4 +58,5 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add docs/
           git diff --staged --quiet || git commit -m "Deploy to GitHub Pages [skip ci]"
+          git pull --rebase origin main || true
           git push
