@@ -12,7 +12,7 @@ export default defineConfig({
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
-  base: "./", // Relative paths for better compatibility
+  base: "/rapidkisk-team-game/", // GitHub Pages base path
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
