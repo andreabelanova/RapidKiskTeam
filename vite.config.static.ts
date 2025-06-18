@@ -12,18 +12,21 @@ export default defineConfig({
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
-  base: "/", // Change this to your GitHub repo name if needed: "/your-repo-name/"
+  base: "./", // Relative paths for better compatibility
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
+    assetsDir: "assets",
     rollupOptions: {
-      input: {
-        main: path.resolve(import.meta.dirname, "client", "index.html"),
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          ui: ["@radix-ui/react-dialog", "@radix-ui/react-button"],
+        },
       },
     },
   },
-  define: {
-    // For static deployment, we'll use localStorage instead of backend
-    __STATIC_DEPLOYMENT__: true,
+  optimizeDeps: {
+    include: ["react", "react-dom"],
   },
 });
