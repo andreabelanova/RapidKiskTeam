@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RapidKISK Team Game</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .header { text-align: center; margin-bottom: 3rem; }
+        .title { font-size: 2rem; font-weight: bold; color: #1e293b; margin-bottom: 1rem; }
+        .subtitle { color: #64748b; font-size: 1.1rem; }
+        .game-area { background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .character-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .character-card { padding: 1.5rem; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+        .character-card:hover { border-color: #3b82f6; background: #f8fafc; }
+        .character-title { font-weight: 600; color: #1e293b; margin-bottom: 0.5rem; }
+        .character-desc { color: #64748b; }
+        .start-btn { background: #3b82f6; color: white; padding: 0.75rem 2rem; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 500; margin: 0.5rem; }
+        .start-btn:hover { background: #2563eb; }
+        .hidden { display: none; }
+        .deployment-success { background: #10b981; color: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="deployment-success">
+            ✅ Deployment Successful! GitHub Pages is working correctly.
+        </div>
+        
+        <div class="header">
+            <h1 class="title">RapidKISK Team Game</h1>
+            <p class="subtitle">Interactive team collaboration simulator for educational purposes</p>
+        </div>
+        
+        <div class="game-area">
+            <div id="landing" class="character-grid">
+                <div class="character-card" onclick="startGame('have_team')">
+                    <h3 class="character-title">I have a team</h3>
+                    <p class="character-desc">You already have a team formed and are ready to work together on your project.</p>
+                </div>
+                <div class="character-card" onclick="startGame('no_team')">
+                    <h3 class="character-title">I do not have a team</h3>
+                    <p class="character-desc">You need to find team members and form a collaborative group.</p>
+                </div>
+                <div class="character-card" onclick="startGame('no_topic')">
+                    <h3 class="character-title">I do not have a project topic</h3>
+                    <p class="character-desc">You need to brainstorm and select a suitable project topic for your team.</p>
+                </div>
+            </div>
+            
+            <div id="game-content" class="hidden">
+                <h2 id="scenario-title"></h2>
+                <p id="scenario-description"></p>
+                <div id="decisions"></div>
+                <button class="start-btn" onclick="showLanding()">Back to Start</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scenarios = {
+            'have_team': {
+                title: 'Team Collaboration Challenge',
+                description: 'Your team is ready to work, but you need to establish effective collaboration practices.',
+                decisions: [
+                    { text: 'Set up regular team meetings', next: 'success' },
+                    { text: 'Start working individually first', next: 'conflict' },
+                    { text: 'Create a shared workspace', next: 'success' }
+                ]
+            },
+            'no_team': {
+                title: 'Team Formation Challenge', 
+                description: 'You need to find the right team members for your project.',
+                decisions: [
+                    { text: 'Look for complementary skills', next: 'success' },
+                    { text: 'Choose friends regardless of skills', next: 'conflict' },
+                    { text: 'Wait for others to approach you', next: 'conflict' }
+                ]
+            },
+            'no_topic': {
+                title: 'Project Topic Selection',
+                description: 'You need to brainstorm and select an appropriate project topic.',
+                decisions: [
+                    { text: 'Research current industry trends', next: 'success' },
+                    { text: 'Pick the first idea that comes to mind', next: 'conflict' },
+                    { text: 'Ask team members for their interests', next: 'success' }
+                ]
+            },
+            'success': {
+                title: 'Congratulations!',
+                description: 'You made excellent decisions and your team collaboration is successful!',
+                decisions: []
+            },
+            'conflict': {
+                title: 'Challenge Encountered',
+                description: 'Your approach led to some challenges. Consider trying a different strategy.',
+                decisions: []
+            }
+        };
+
+        function startGame(characterId) {
+            const scenario = scenarios[characterId];
+            document.getElementById('landing').classList.add('hidden');
+            document.getElementById('game-content').classList.remove('hidden');
+            
+            document.getElementById('scenario-title').textContent = scenario.title;
+            document.getElementById('scenario-description').textContent = scenario.description;
+            
+            const decisionsDiv = document.getElementById('decisions');
+            decisionsDiv.innerHTML = '';
+            
+            scenario.decisions.forEach(decision => {
+                const button = document.createElement('button');
+                button.className = 'start-btn';
+                button.textContent = decision.text;
+                button.onclick = () => continueGame(decision.next);
+                decisionsDiv.appendChild(button);
+            });
+        }
+
+        function continueGame(nextScenario) {
+            startGame(nextScenario);
+        }
+
+        function showLanding() {
+            document.getElementById('game-content').classList.add('hidden');
+            document.getElementById('landing').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
