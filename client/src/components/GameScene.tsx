@@ -50,7 +50,7 @@ export function GameScene({ scenario, onDecisionSelect, onMaterialsToggle, isVis
   // Reset selection when scenario changes
   useEffect(() => {
     setSelectedDecisionId(null);
-  }, [scenario.id]);
+  }, [scenario]);
 
   const handleDecisionClick = (decision: Decision) => {
     setSelectedDecisionId(decision.id);
