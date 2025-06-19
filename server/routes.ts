@@ -111,3 +111,5 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
   return httpServer;
 }
+// Na konci server/routes.ts
+export default router;
