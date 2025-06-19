@@ -41,17 +41,16 @@ interface GameSceneProps {
 }
 
 export function GameScene({ scenario, onDecisionSelect, onMaterialsToggle, isVisible }: GameSceneProps) {
-  const [selectedDecisionId, setSelectedDecisionId] = useState<string | null>(null);
-  
-  // Reset selection when scenario changes
-  useEffect(() => {
-    setSelectedDecisionId(null);
-  }, [scenario.id]);
-
   if (!isVisible) return null;
 
   const decisions = scenario.decisions as Decision[];
   const isEndState = ['continue_project', 'seek_help', 'project_cancelled', 'happy_student'].includes(scenario.id);
+  const [selectedDecisionId, setSelectedDecisionId] = useState<string | null>(null);
+
+  // Reset selection when scenario changes
+  useEffect(() => {
+    setSelectedDecisionId(null);
+  }, [scenario.id]);
 
   const handleDecisionClick = (decision: Decision) => {
     setSelectedDecisionId(decision.id);
