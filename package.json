@@ -22,12 +22,16 @@
     "@radix-ui/react-toggle-group": "^1.1.10",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@tanstack/react-query": "^5.80.10",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
     "express": "^4.18.2",
     "lucide-react": "^0.518.0",
     "rest-express": "1.0.0",
     "tsx": "^3.8.0",
     "vite": "^5.4.14",
-    "wouter": "^3.7.1"
+    "wouter": "^3.7.1",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
