@@ -29,6 +29,7 @@
     "express": "^4.18.2",
     "lucide-react": "^0.518.0",
     "rest-express": "1.0.0",
+    "tailwind-merge": "^3.3.1",
     "wouter": "^3.7.1",
     "zod": "^3.25.67"
   },
